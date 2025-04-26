@@ -69,7 +69,7 @@ import java.util.concurrent.TimeUnit;
 
 public class VolcEngineService {
 
-    private static final String BASE_URL = "https:///api.openai.com/";
+    private static final String BASE_URL = "https://ark.cn-beijing.volces.com/api/";
     private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(10);
     private static final ObjectMapper mapper = defaultObjectMapper();
 
