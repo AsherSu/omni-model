@@ -1,0 +1,10 @@
+{
+  "id": "file-ccdDZrC3iZVNiQVeEA6Z66wf",
+  "object": "file",
+  "bytes": 175,
+  "created_at": 1613677385,
+  "filename": "train.jsonl",
+  "purpose": "search",
+  "status": "error",
+  "status_details": "File is too large."
+}

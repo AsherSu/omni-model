@@ -1,0 +1,31 @@
+# 阿里云通义千问提供商配置示例
+# 将此文件复制为 aliyun.properties 并修改为你的实际配置
+
+# 基础配置
+provider=aliyun
+model.name=qwen-turbo
+api.key=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+api.endpoint=https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation
+
+# 高级配置
+timeout=30000
+max.retries=3
+retry.delay=1000
+
+# 模型特定配置
+model.temperature=0.7
+model.max.tokens=2048
+model.top.p=0.8
+model.top.k=50
+model.stop=["#", "User:", "Assistant:"]
+
+# 请求配置
+request.format=json
+resource.group.id=default
+
+# 模型版本选择
+# 可选值: qwen-turbo (通义千问turbo), qwen-plus (通义千问plus), qwen-max (通义千问max)
+# model.version=qwen-turbo
+
+# 区域配置
+region=cn-beijing 

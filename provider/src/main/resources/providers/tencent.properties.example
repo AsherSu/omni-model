@@ -1,0 +1,31 @@
+# 腾讯云混元提供商配置示例
+# 将此文件复制为 tencent.properties 并修改为你的实际配置
+
+# 基础配置
+provider=tencent
+model.name=hunyuan
+api.key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+api.endpoint=https://hunyuan.tencentcloudapi.com
+
+# 腾讯云特有配置
+secret.id=AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+secret.key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+region=ap-guangzhou
+
+# 高级配置
+timeout=30000
+max.retries=3
+retry.delay=1000
+
+# 模型特定配置
+model.temperature=0.7
+model.max.tokens=2048
+model.top.p=0.8
+
+# 请求配置
+request.format=json
+version=2023-08-01
+
+# 调用ID配置（便于追踪和管理请求）
+request.id.prefix=omnimodel-
+generate.request.id=true 

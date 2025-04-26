@@ -1,0 +1,30 @@
+# 百度文心一言提供商配置示例
+# 将此文件复制为 baidu.properties 并修改为你的实际配置
+
+# 基础配置
+provider=baidu
+model.name=ernie-bot-4
+api.key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+api.endpoint=https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/
+
+# 百度云特有配置
+secret.key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+access.token.url=https://aip.baidubce.com/oauth/2.0/token
+
+# 高级配置
+timeout=30000
+max.retries=3
+retry.delay=1000
+token.refresh.interval=2592000000
+
+# 模型特定配置
+model.temperature=0.7
+model.max.tokens=2048
+model.top.p=0.8
+model.penalty.score=1.0
+
+# 可选模型 (可以替换api.endpoint中的路径来调用不同模型)
+# ernie-bot-4: 百度文心大模型增强版
+# ernie-bot: 百度文心大模型标准版
+# ernie-bot-turbo: 百度文心大模型轻量版
+# model.version=ernie-bot-4 

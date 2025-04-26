@@ -1,0 +1,34 @@
+# MiniMax提供商配置示例
+# 将此文件复制为 minimax.properties 并修改为你的实际配置
+
+# 基础配置
+provider=minimax
+model.name=abab-5.5
+api.key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+api.endpoint=https://api.minimax.chat/v1/text/chatcompletion_pro
+
+# MiniMax特有配置
+group.id=your-group-id
+
+# 高级配置
+timeout=30000
+max.retries=3
+retry.delay=1000
+
+# 模型特定配置
+model.temperature=0.7
+model.max.tokens=2048
+model.top.p=0.95
+model.use.beam.search=false
+model.bot.setting.content=你是MiniMax训练的AI助手
+
+# 可选模型
+# abab-5.5：支持多轮对话的大语言模型
+# abab-5.5-chat：针对对话场景优化的大语言模型
+# abab-5：5B参数的基础大语言模型
+# abab-6：针对中文优化的大语言模型
+# model.version=abab-5.5
+
+# 扩展配置
+with.conversion.check=true
+with.search=false 

@@ -1,0 +1,36 @@
+# 智谱AI（ChatGLM）提供商配置示例
+# 将此文件复制为 zhipu.properties 并修改为你的实际配置
+
+# 基础配置
+provider=zhipu
+model.name=glm-4
+api.key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+api.endpoint=https://open.bigmodel.cn/api/paas/v4/chat/completions
+
+# 高级配置
+timeout=30000
+max.retries=3
+retry.delay=1000
+
+# 智谱AI特有配置
+api.secret=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+jwt.expiration.time=3600
+
+# 模型特定配置
+model.temperature=0.7
+model.max.tokens=2048
+model.top.p=0.7
+model.request.id=omnimodel-zhipu-request
+
+# 可选模型
+# glm-4: 智谱最新旗舰大语言模型，支持多轮对话
+# glm-3-turbo: 轻量级模型，高性能，对话体验流畅
+# cogview-3: 图像生成模型
+# model.version=glm-4
+
+# 流式输出配置
+stream=false
+
+# 响应格式
+return.type=text
+return.json.mode=false 
