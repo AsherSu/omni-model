@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AssistantTest {
 
-    static OpenAiService service = new OpenAiService("sk-PNv13c610dd015cebeb28f20e2962840cd8aaa4eb22XN8GX");
+    static OpenAiService service = new OpenAiService("");
     static String assistantId;
     static String fileId;
 

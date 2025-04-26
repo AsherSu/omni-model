@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CompletionTest {
 
-    String token = "sk-PNv13c610dd015cebeb28f20e2962840cd8aaa4eb22XN8GX";
+    String token = "";
     OpenAiService service = new OpenAiService(token);
 
     @Test
