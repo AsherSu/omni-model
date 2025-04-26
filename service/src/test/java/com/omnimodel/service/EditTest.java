@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class EditTest {
 
-    String token = System.getenv("OPENAI_TOKEN");
+    String token = TestConfig.getApiKey();
     OpenAiService service = new OpenAiService(token);
 
     @Test

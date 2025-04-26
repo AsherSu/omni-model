@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ModelTest {
 
-    String token = System.getenv("OPENAI_TOKEN");
+    String token = TestConfig.getApiKey();
     OpenAiService service = new OpenAiService(token);
 
     @Test

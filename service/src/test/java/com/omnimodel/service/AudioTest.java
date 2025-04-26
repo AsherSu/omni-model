@@ -22,7 +22,7 @@ public class AudioTest {
 
     static String koreanAudioFilePath = "src/test/resources/korean-hello.mp3";
 
-    String token = System.getenv("OPENAI_TOKEN");
+    String token = TestConfig.getApiKey();
     OpenAiService service = new OpenAiService(token, Duration.ofSeconds(30));
 
     @Test

@@ -12,7 +12,7 @@ import com.omnimodel.assistants.*;
 import com.omnimodel.audio.*;
 import com.omnimodel.billing.BillingUsage;
 import com.omnimodel.billing.Subscription;
-import com.omnimodel.client.OpenAiApi;
+import com.omnimodel.client.VolcEngineApi;
 import com.omnimodel.completion.CompletionChunk;
 import com.omnimodel.completion.CompletionRequest;
 import com.omnimodel.completion.CompletionResult;
@@ -67,62 +67,62 @@ import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class OpenAiService {
+public class VolcEngineService {
 
-    private static final String BASE_URL = "https://ark.cn-beijing.volces.com/api/";
+    private static final String BASE_URL = "https:///api.openai.com/";
     private static final Duration DEFAULT_TIMEOUT = Duration.ofSeconds(10);
     private static final ObjectMapper mapper = defaultObjectMapper();
 
-    private final OpenAiApi api;
+    private final VolcEngineApi api;
     private final ExecutorService executorService;
 
     /**
-     * Creates a new OpenAiService that wraps OpenAiApi
+     * Creates a new OpenAiService that wraps VolcEngineApi
      *
      * @param token OpenAi token string "sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
      */
-    public OpenAiService(final String token) {
+    public VolcEngineService(final String token) {
         this(token, DEFAULT_TIMEOUT);
     }
 
     /**
-     * Creates a new OpenAiService that wraps OpenAiApi
+     * Creates a new OpenAiService that wraps VolcEngineApi
      *
      * @param token   OpenAi token string "sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
      * @param timeout http read timeout, Duration.ZERO means no timeout
      */
-    public OpenAiService(final String token, final Duration timeout) {
+    public VolcEngineService(final String token, final Duration timeout) {
         ObjectMapper mapper = defaultObjectMapper();
         OkHttpClient client = defaultClient(token, timeout);
         Retrofit retrofit = defaultRetrofit(client, mapper);
 
-        this.api = retrofit.create(OpenAiApi.class);
+        this.api = retrofit.create(VolcEngineApi.class);
         this.executorService = client.dispatcher().executorService();
     }
 
     /**
-     * Creates a new OpenAiService that wraps OpenAiApi.
+     * Creates a new OpenAiService that wraps VolcEngineApi.
      * Use this if you need more customization, but use OpenAiService(api, executorService) if you use streaming and
      * want to shut down instantly
      *
-     * @param api OpenAiApi instance to use for all methods
+     * @param api VolcEngineApi instance to use for all methods
      */
-    public OpenAiService(final OpenAiApi api) {
+    public VolcEngineService(final VolcEngineApi api) {
         this.api = api;
         this.executorService = null;
     }
 
     /**
-     * Creates a new OpenAiService that wraps OpenAiApi.
+     * Creates a new OpenAiService that wraps VolcEngineApi.
      * The ExecutorService must be the one you get from the client you created the api with
      * otherwise shutdownExecutor() won't work.
      * <p>
      * Use this if you need more customization.
      *
-     * @param api             OpenAiApi instance to use for all methods
+     * @param api             VolcEngineApi instance to use for all methods
      * @param executorService the ExecutorService from client.dispatcher().executorService()
      */
-    public OpenAiService(final OpenAiApi api, final ExecutorService executorService) {
+    public VolcEngineService(final VolcEngineApi api, final ExecutorService executorService) {
         this.api = api;
         this.executorService = executorService;
     }
@@ -570,12 +570,12 @@ public class OpenAiService {
         this.executorService.shutdown();
     }
 
-    public static OpenAiApi buildApi(String token, Duration timeout) {
+    public static VolcEngineApi buildApi(String token, Duration timeout) {
         ObjectMapper mapper = defaultObjectMapper();
         OkHttpClient client = defaultClient(token, timeout);
         Retrofit retrofit = defaultRetrofit(client, mapper);
 
-        return retrofit.create(OpenAiApi.class);
+        return retrofit.create(VolcEngineApi.class);
     }
 
     public static ObjectMapper defaultObjectMapper() {

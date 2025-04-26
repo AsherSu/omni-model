@@ -40,8 +40,9 @@ class ChatCompletionTest {
         }
     }
 
-    String token = "sk-PNv13c610dd015cebeb28f20e2962840cd8aaa4eb22XN8GX";
+    String token = TestConfig.getApiKey();
     OpenAiService service = new OpenAiService(token);
+    VolcEngineService serviceVolc = new VolcEngineService(token);
 
     @Test
     void createChatCompletion() {
@@ -51,7 +52,7 @@ class ChatCompletionTest {
 
         ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
                 .builder()
-                .model("gpt-3.5-turbo")
+                .model("deepseek-r1-250120")
                 .messages(messages)
                 .n(5)
                 .maxTokens(50)
@@ -63,6 +64,27 @@ class ChatCompletionTest {
     }
 
     @Test
+    void createChatCompletionVolc() {
+        final List<ChatMessage> messages = new ArrayList<>();
+        final ChatMessage systemMessage = new ChatMessage(ChatMessageRole.SYSTEM.value(), "You are a dog and will speak as such.");
+        messages.add(systemMessage);
+
+        ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
+                .builder()
+                .model("deepseek-r1-250120")
+                .messages(messages)
+//                .n(5)
+//                .maxTokens(50)
+//                .logitBias(new HashMap<>())
+                .build();
+
+        List<ChatCompletionChoice> choices = serviceVolc.createChatCompletion(chatCompletionRequest).getChoices();
+        assertEquals(5, choices.size());
+    }
+
+
+
+    @Test
     void streamChatCompletion() {
         final List<ChatMessage> messages = new ArrayList<>();
         final ChatMessage systemMessage = new ChatMessage(ChatMessageRole.SYSTEM.value(), "You are a dog and will speak as such.");
@@ -70,7 +92,7 @@ class ChatCompletionTest {
 
         ChatCompletionRequest chatCompletionRequest = ChatCompletionRequest
                 .builder()
-                .model("gpt-3.5-turbo")
+                .model("deepseek-r1")
                 .messages(messages)
                 .n(1)
                 .maxTokens(50)

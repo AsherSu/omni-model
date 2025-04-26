@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ThreadTest {
 
-    String token = System.getenv("OPENAI_TOKEN");
+    String token = TestConfig.getApiKey();
     OpenAiService service = new OpenAiService(token);
 
     static String threadId;
