@@ -1,8 +1,12 @@
 package example;
 
-import com.omnimodel.completion.chat.*;
-import com.omnimodel.service.FunctionExecutor;
-import com.omnimodel.service.OpenAiService;
+import cn.ashersu.omni.model.completion.chat.ChatCompletionRequest;
+import cn.ashersu.omni.model.completion.chat.ChatFunction;
+import cn.ashersu.omni.model.completion.chat.ChatMessage;
+import cn.ashersu.omni.model.completion.chat.ChatMessageRole;
+import cn.ashersu.omni.model.completion.chat.ChatCompletionChunk;
+import cn.ashersu.omni.model.service.FunctionExecutor;
+import cn.ashersu.omni.model.service.OpenAiService;
 import example.OpenAiApiFunctionsExample.Weather;
 import example.OpenAiApiFunctionsExample.WeatherResponse;
 import io.reactivex.Flowable;

@@ -1,11 +1,11 @@
 package example;
 
-import com.omnimodel.completion.chat.ChatCompletionRequest;
-import com.omnimodel.completion.chat.ChatMessage;
-import com.omnimodel.completion.chat.ChatMessageRole;
-import com.omnimodel.service.OpenAiService;
-import com.omnimodel.completion.CompletionRequest;
-import com.omnimodel.image.CreateImageRequest;
+import cn.ashersu.omni.model.completion.chat.ChatCompletionRequest;
+import cn.ashersu.omni.model.completion.chat.ChatMessage;
+import cn.ashersu.omni.model.completion.chat.ChatMessageRole;
+import cn.ashersu.omni.model.service.OpenAiService;
+import cn.ashersu.omni.model.completion.CompletionRequest;
+import cn.ashersu.omni.model.image.CreateImageRequest;
 
 import java.time.Duration;
 import java.util.ArrayList;

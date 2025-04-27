@@ -17,14 +17,14 @@
 <dependency>
     <groupId>com.horoscope</groupId>
     <artifactId>omnimodel-service</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1</version>
 </dependency>
 ```
 
 ### 基本用法
 
 ```java
-import com.horoscope.omnimodel.service.OpenAiService;
+import com.horoscope.service.OpenAiService;
 import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.completion.CompletionResult;
 
@@ -49,7 +49,7 @@ service.shutdown();
 ### 流式输出示例
 
 ```java
-import com.horoscope.omnimodel.service.OpenAiService;
+import com.horoscope.service.OpenAiService;
 import com.theokanning.openai.completion.CompletionRequest;
 
 // 创建OpenAI服务
@@ -75,8 +75,8 @@ service.shutdown();
 ### 函数调用示例
 
 ```java
-import com.horoscope.omnimodel.service.OpenAiService;
-import com.horoscope.omnimodel.service.FunctionExecutor;
+import com.horoscope.service.OpenAiService;
+import com.horoscope.service.FunctionExecutor;
 import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.completion.chat.ChatMessageRole;
 import com.theokanning.openai.completion.chat.ChatCompletionRequest;
@@ -109,7 +109,7 @@ service.shutdown();
 
 ## 包结构说明
 
-- `com.horoscope.omnimodel.service`: 服务接口和实现类
+- `com.horoscope.service`: 服务接口和实现类
 - `com.theokanning.openai.service`: 原始OpenAI服务实现
 
 ## 依赖说明

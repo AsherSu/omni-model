@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.github</groupId>
+        <groupId>cn.ashersu.omni.model</groupId>
         <artifactId>OmniModel</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
 
     <artifactId>omnimodel-example</artifactId>
@@ -18,7 +18,7 @@
     <dependencies>
         <!-- Service模块依赖 -->
         <dependency>
-            <groupId>com.github</groupId>
+            <groupId>cn.ashersu.omni.model</groupId>
             <artifactId>omnimodel-service</artifactId>
             <version>${project.version}</version>
         </dependency>

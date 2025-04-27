@@ -1,8 +1,8 @@
 package example;
 
-import com.omnimodel.completion.chat.ChatMessage;
-import com.omnimodel.completion.chat.ChatMessageRole;
-import com.omnimodel.utils.TikTokensUtil;
+import cn.ashersu.omni.model.completion.chat.ChatMessage;
+import cn.ashersu.omni.model.completion.chat.ChatMessageRole;
+import cn.ashersu.omni.model.utils.TikTokensUtil;
 
 import java.util.ArrayList;
 import java.util.List;

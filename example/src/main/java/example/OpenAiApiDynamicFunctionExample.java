@@ -1,10 +1,11 @@
 package example;
 
+import cn.ashersu.omni.model.completion.chat.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.omnimodel.completion.chat.*;
-import com.omnimodel.service.OpenAiService;
+import cn.ashersu.omni.model.completion.chat.ChatCompletionRequest;
+import cn.ashersu.omni.model.service.OpenAiService;
 
 import java.util.*;
 

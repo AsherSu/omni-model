@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SonarLintProjectSettings">
+    <option name="moduleMapping">
+      <map>
+        <entry key="omnimodel-api-model" value="omnimodel-api" />
+        <entry key="omnimodel-api-path" value="omnimodel-client" />
+        <entry key="omnimodel-bundle" value="distribution" />
+      </map>
+    </option>
+  </component>
+</project>

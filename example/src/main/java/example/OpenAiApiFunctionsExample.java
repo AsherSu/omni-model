@@ -1,11 +1,15 @@
 package example;
 
+import cn.ashersu.omni.model.completion.chat.ChatFunction;
+import cn.ashersu.omni.model.completion.chat.ChatFunctionCall;
+import cn.ashersu.omni.model.completion.chat.ChatMessage;
+import cn.ashersu.omni.model.completion.chat.ChatMessageRole;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
-import com.omnimodel.completion.chat.*;
-import com.omnimodel.completion.chat.ChatCompletionRequest.ChatCompletionRequestFunctionCall;
-import com.omnimodel.service.FunctionExecutor;
-import com.omnimodel.service.OpenAiService;
+import cn.ashersu.omni.model.completion.chat.ChatCompletionRequest;
+import cn.ashersu.omni.model.completion.chat.ChatCompletionRequest.ChatCompletionRequestFunctionCall;
+import cn.ashersu.omni.model.service.FunctionExecutor;
+import cn.ashersu.omni.model.service.OpenAiService;
 
 import java.util.*;
 
