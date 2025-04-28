@@ -6,9 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @description:
- * @author: vacuity
- * @create: 2023-11-16 22:27
+ * @description 
+ * @author  vacuity
+ * @create  2023-11-16 22:27
  **/
 
 

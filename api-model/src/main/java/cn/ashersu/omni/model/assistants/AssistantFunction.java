@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 import java.util.Map;
 
 /**
- * @description:
- * @author: vacuity
- * @create: 2023-11-20 10:09
+ * @description 
+ * @author  vacuity
+ * @create  2023-11-20 10:09
  **/
 @Builder
 @NoArgsConstructor
