@@ -6,13 +6,13 @@
 
     <parent>
         <groupId>cn.ashersu.omni.model</groupId>
-        <artifactId>OmniModel</artifactId>
-        <version>0.0.1</version>
+        <artifactId>omni-model</artifactId>
+        <version>0.0.3</version>
     </parent>
 
-    <artifactId>omnimodel-api-path</artifactId>
+    <artifactId>omni-model-api-path</artifactId>
     <packaging>jar</packaging>
-    <name>OmniModel Client</name>
+    <name>omni-model-api-path</name>
     <description>客户端模块，提供与各种大模型服务交互的客户端实现</description>
 
     <dependencies>
@@ -59,8 +59,8 @@
 
         <dependency>
             <groupId>cn.ashersu.omni.model</groupId>
-            <artifactId>omnimodel-api-model</artifactId>
-            <version>0.0.1</version>
+            <artifactId>omni-model-api-model</artifactId>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

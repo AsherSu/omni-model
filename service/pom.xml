@@ -6,20 +6,20 @@
 
     <parent>
         <groupId>cn.ashersu.omni.model</groupId>
-        <artifactId>OmniModel</artifactId>
-        <version>0.0.1</version>
+        <artifactId>omni-model</artifactId>
+        <version>0.0.3</version>
     </parent>
 
-    <artifactId>omnimodel-service</artifactId>
+    <artifactId>omni-model-service</artifactId>
     <packaging>jar</packaging>
-    <name>OmniModel Service</name>
+    <name>omni-model-service</name>
     <description>服务模块，提供与各种大模型服务交互的高级功能和服务接口</description>
 
     <dependencies>
         <!-- API模块依赖 -->
         <dependency>
             <groupId>cn.ashersu.omni.model</groupId>
-            <artifactId>omnimodel-api-model</artifactId>
+            <artifactId>omni-model-api-model</artifactId>
             <version>${project.version}</version>
         </dependency>
         
@@ -152,16 +152,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <!-- 发布配置 -->
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
 </project> 

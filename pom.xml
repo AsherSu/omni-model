@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cn.ashersu.omni.model</groupId>
-    <artifactId>OmniModel</artifactId>
-    <version>0.0.1</version>
+    <artifactId>omni-model</artifactId>
+    <version>0.0.3</version>
     <packaging>pom</packaging>
 
-    <name>OmniModel</name>
+    <name>omni-model</name>
     <description>A powerful SDK for model integration and management</description>
     <url>https://github.com/horoscope/OmniModel</url>
 
@@ -38,8 +38,7 @@
         <module>api-model</module>
         <module>api-path</module>
         <module>service</module>
-        <module>example</module>
-        <module>omnimodel-bundle</module>
+        <module>omni-model-all</module>
     </modules>
 
     <properties>
@@ -101,106 +100,106 @@
 
     <build>
         <plugins>
-            <!-- Compiler plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.10.1</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-
-            <!-- Source plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.1</version>
+                <version>3.3.0</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
-                        <phase>verify</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Javadoc plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.4.1</version>
+                <version>2.9.1</version>
                 <configuration>
-                    <encoding>UTF-8</encoding>
+                    <aggregate>true</aggregate>
                     <charset>UTF-8</charset>
+                    <encoding>UTF-8</encoding>
                     <docencoding>UTF-8</docencoding>
-                    <additionalJOptions>
-                        <additionalJOption>-tag description:a:描述:</additionalJOption>
-                        <additionalJOption>-tag create:a:创建时间:</additionalJOption>
-                    </additionalJOptions>
+                    <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
-                        <phase>verify</phase>
                         <goals>
                             <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
-
-            <!-- Testing plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M7</version>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--maven插件-->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.4.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <tokenAuth>true</tokenAuth>
+                </configuration>
             </plugin>
         </plugins>
     </build>
 
-<!--            &lt;!&ndash; Deploy plugin &ndash;&gt;-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-deploy-plugin</artifactId>-->
-<!--                <version>3.0.0</version>-->
-<!--            </plugin>-->
+    <distributionManagement>
+        <!-- 发布版本用的仓库 -->
+        <repository>
+            <id>central</id>
+            <name>OSSRH Releases</name>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
-<!--            &lt;!&ndash; Assembly plugin &ndash;&gt;-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-assembly-plugin</artifactId>-->
-<!--                <version>3.6.0</version>-->
-<!--                <configuration>-->
-<!--                    <descriptorRefs>-->
-<!--                        <descriptorRef>jar-with-dependencies</descriptorRef>-->
-<!--                    </descriptorRefs>-->
-<!--                    <finalName>${project.artifactId}-${project.version}-bundle</finalName>-->
-<!--                    <appendAssemblyId>true</appendAssemblyId>-->
-<!--                    <attach>true</attach>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>make-assembly</id>-->
-<!--                        <phase>package</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>single</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
-
-<!--    <profiles>-->
+    <profiles>
 <!--        <profile>-->
 <!--            <id>release</id>-->
 <!--            <build>-->
 <!--                <plugins>-->
+<!--                    &lt;!&ndash; 添加assembly插件用于创建zip包 &ndash;&gt;-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-assembly-plugin</artifactId>-->
+<!--                        <version>3.4.2</version>-->
+<!--                        <configuration>-->
+<!--                            <descriptors>-->
+<!--                                <descriptor>src/assembly/repository.xml</descriptor>-->
+<!--                            </descriptors>-->
+<!--                            <finalName>${project.artifactId}-${project.version}</finalName>-->
+<!--                            <appendAssemblyId>true</appendAssemblyId>-->
+<!--                            <attach>true</attach>-->
+<!--                        </configuration>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>make-assembly</id>-->
+<!--                                <phase>package</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>single</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+
 <!--                    &lt;!&ndash; GPG plugin &ndash;&gt;-->
 <!--                    <plugin>-->
 <!--                        <groupId>org.apache.maven.plugins</groupId>-->
@@ -213,10 +212,16 @@
 <!--                                <goals>-->
 <!--                                    <goal>sign</goal>-->
 <!--                                </goals>-->
+<!--                                <configuration>-->
+<!--                                    <gpgArguments>-->
+<!--                                        <arg>&#45;&#45;pinentry-mode</arg>-->
+<!--                                        <arg>loopback</arg>-->
+<!--                                    </gpgArguments>-->
+<!--                                </configuration>-->
 <!--                            </execution>-->
 <!--                        </executions>-->
 <!--                    </plugin>-->
-<!--                    -->
+
 <!--                    &lt;!&ndash; Nexus Staging plugin &ndash;&gt;-->
 <!--                    <plugin>-->
 <!--                        <groupId>org.sonatype.plugins</groupId>-->
@@ -232,16 +237,5 @@
 <!--                </plugins>-->
 <!--            </build>-->
 <!--        </profile>-->
-<!--    </profiles>-->
-
-<!--    <distributionManagement>-->
-<!--        <snapshotRepository>-->
-<!--            <id>ossrh</id>-->
-<!--            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>-->
-<!--        </snapshotRepository>-->
-<!--        <repository>-->
-<!--            <id>ossrh</id>-->
-<!--            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
-<!--        </repository>-->
-<!--    </distributionManagement>-->
+    </profiles>
 </project>

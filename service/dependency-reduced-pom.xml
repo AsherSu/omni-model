@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
-    <artifactId>OmniModel</artifactId>
+    <artifactId>omni-model</artifactId>
     <groupId>cn.ashersu.omni.model</groupId>
-    <version>0.0.1</version>
+    <version>0.0.3</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>omnimodel-service</artifactId>
-  <name>OmniModel Service</name>
+  <artifactId>omni-model-service</artifactId>
+  <name>omni-model-service</name>
   <description>服务模块，提供与各种大模型服务交互的高级功能和服务接口</description>
   <build>
     <resources>
@@ -121,14 +121,4 @@
       </exclusions>
     </dependency>
   </dependencies>
-  <distributionManagement>
-    <repository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-  </distributionManagement>
 </project>

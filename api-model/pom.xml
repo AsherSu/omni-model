@@ -6,13 +6,13 @@
 
     <parent>
         <groupId>cn.ashersu.omni.model</groupId>
-        <artifactId>OmniModel</artifactId>
-        <version>0.0.1</version>
+        <artifactId>omni-model</artifactId>
+        <version>0.0.3</version>
     </parent>
 
-    <artifactId>omnimodel-api-model</artifactId>
+    <artifactId>omni-model-api-model</artifactId>
     <packaging>jar</packaging>
-    <name>OmniModel API</name>
+    <name>omni-model-api-model</name>
     <description>API模块，提供与各种大模型服务的接口集成</description>
 
     <dependencies>
