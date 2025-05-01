@@ -85,8 +85,8 @@
         </dependency>
         <dependency>
             <groupId>cn.ashersu.omni.model</groupId>
-            <artifactId>omnimodel-api-path</artifactId>
-            <version>0.0.1</version>
+            <artifactId>omni-model-api-path</artifactId>
+            <version>0.0.3</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
