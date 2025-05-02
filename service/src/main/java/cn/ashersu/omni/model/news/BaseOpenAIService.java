@@ -30,38 +30,72 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseOpenAIService {
 
-    private Duration connectTimeout;
+    /**
+     * TCP连接池最大连接数
+     */
+    private Integer maxIdleConnection;
+
+    /**
+     * TCP连接池连接超时时间
+     */
+    private Integer connectTimeout;
+
+    /**
+     * okhttp读取响应超时时间
+     */
     private Duration readTimeout;
-    public ExecutorService executorService;   // 线程池
+
+    /**
+     * okHttp线程池(暂不支持自定义)
+     */
+    public ExecutorService executorService;
+
+    /**
+     * TCP连接池
+     */
     private ConnectionPool connectionPool;
+
+    /**
+     * OpenAI API地址
+     */
     private String baseUrl;
+
+    /**
+     * OpenAI API Token
+     */
     private String token;
 
     // private List<Interceptor> interceptor;
 
+    /**
+     * objectMapper 用于序列化和反序列化 (暂不支持自定义)
+     */
     public final ObjectMapper mapper = defaultObjectMapper();
 
-    // Retrofit接口定义
+    /**
+     * Retrofit接口定义 (暂不支持自定义)
+     */
     public final OpenAiApi api;
-
-    // private final OkHttpClient http;
 
     public BaseOpenAIService(OpenAIConfig config) {
         init(config);
         ObjectMapper mapper = defaultObjectMapper();
-        OkHttpClient client = defaultClient(token, readTimeout);
+        OkHttpClient client = defaultClient(token, readTimeout,maxIdleConnection,connectTimeout);
         Retrofit retrofit = defaultRetrofit(client, mapper);
 
         this.api = retrofit.create(OpenAiApi.class);
+        this.executorService = client.dispatcher().executorService();
     }
 
     public void init(OpenAIConfig config) {
-//        this.connectTimeout = config.getConnectTimeout();
+        this.maxIdleConnection = config.getMaxIdleConnection();
+        this.connectTimeout = config.getConnectTimeout();
         this.readTimeout = config.getReadTimeout();
 //        this.executorService = config.getExecutor();
         this.connectionPool = config.getConnectionPool();
@@ -112,14 +146,14 @@ public abstract class BaseOpenAIService {
         return mapper;
     }
 
-    public OkHttpClient defaultClient(String token, Duration timeout) {
+    public OkHttpClient defaultClient(String token, Duration timeout,Integer maxIdleConnection,Integer connectTimeout) {
         // 添加日志拦截器，打印HTTP请求和响应
 //        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(System.out::println);
 //        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return new OkHttpClient.Builder()
 //                .addInterceptor(loggingInterceptor)
                 .addInterceptor(new AuthenticationInterceptor(token))
-                .connectionPool(new ConnectionPool(5, 1, TimeUnit.SECONDS))
+                .connectionPool(new ConnectionPool(maxIdleConnection, connectTimeout, TimeUnit.MILLISECONDS))
                 .readTimeout(timeout.toMillis(), TimeUnit.MILLISECONDS)
                 .build();
     }
@@ -150,5 +184,16 @@ public abstract class BaseOpenAIService {
                 throw e;
             }
         }
+    }
+
+    /**
+     * Shuts down the OkHttp ExecutorService.
+     * The default behaviour of OkHttp's ExecutorService (ConnectionPool)
+     * is to shut down after an idle timeout of 60s.
+     * Call this method to shut down the ExecutorService immediately.
+     */
+    public void shutdownExecutor() {
+        Objects.requireNonNull(this.executorService, "executorService must be set in order to shut down");
+        this.executorService.shutdown();
     }
 }

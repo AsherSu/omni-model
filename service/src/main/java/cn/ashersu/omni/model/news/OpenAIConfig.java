@@ -12,7 +12,8 @@ import java.util.concurrent.ExecutorService;
 @Data
 @Builder
 public final class OpenAIConfig {
-//    private final Duration connectTimeout;
+    private final Integer maxIdleConnection;
+    private final Integer connectTimeout;
     private final Duration readTimeout;
 //    private final ExecutorService executor;   // 线程池
     private final ConnectionPool connectionPool;

@@ -19,7 +19,17 @@ public class OpenAI {
 
     private volatile ModelService modelService;
 
-    private volatile OtherService otherService;
+    private volatile EmbeddingService embeddingService;
+
+    private volatile AudioService audioService;
+
+    private volatile ModerationService moderationService;
+
+    private volatile ThreadService threadService;
+
+    private volatile RunService runService;
+
+    private volatile BillingService billingService;
 
     public OpenAI(Map<Class, OpenAIConfig> globalCfgs) {
         this.globalCfgMap = globalCfgs;
@@ -102,15 +112,69 @@ public class OpenAI {
         return modelService;
     }
 
-    public OtherService other() {
-        if (otherService == null) {
+    public EmbeddingService embeddings() {
+        if (embeddingService == null) {
             synchronized (this) {
-                if (otherService == null) {
-                    otherService = new OtherService(globalCfgMap.get(OtherService.class));
+                if (embeddingService == null) {
+                    embeddingService = new EmbeddingService(globalCfgMap.get(EmbeddingService.class));
                 }
             }
         }
-        return otherService;
+        return embeddingService;
     }
 
+    public AudioService audio() {
+        if (audioService == null) {
+            synchronized (this) {
+                if (audioService == null) {
+                    audioService = new AudioService(globalCfgMap.get(AudioService.class));
+                }
+            }
+        }
+        return audioService;
+    }
+
+    public ModerationService moderation() {
+        if (moderationService == null) {
+            synchronized (this) {
+                if (moderationService == null) {
+                    moderationService = new ModerationService(globalCfgMap.get(ModerationService.class));
+                }
+            }
+        }
+        return moderationService;
+    }
+
+    public ThreadService threads() {
+        if (threadService == null) {
+            synchronized (this) {
+                if (threadService == null) {
+                    threadService = new ThreadService(globalCfgMap.get(ThreadService.class));
+                }
+            }
+        }
+        return threadService;
+    }
+
+    public RunService runs() {
+        if (runService == null) {
+            synchronized (this) {
+                if (runService == null) {
+                    runService = new RunService(globalCfgMap.get(RunService.class));
+                }
+            }
+        }
+        return runService;
+    }
+
+    public BillingService billing() {
+        if (billingService == null) {
+            synchronized (this) {
+                if (billingService == null) {
+                    billingService = new BillingService(globalCfgMap.get(BillingService.class));
+                }
+            }
+        }
+        return billingService;
+    }
 }
