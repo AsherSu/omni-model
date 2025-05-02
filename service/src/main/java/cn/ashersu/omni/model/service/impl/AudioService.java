@@ -1,4 +1,4 @@
-package cn.ashersu.omni.model.news;
+package cn.ashersu.omni.model.service.impl;
 
 import cn.ashersu.omni.model.audio.*;
 import okhttp3.MediaType;

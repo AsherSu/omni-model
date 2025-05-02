@@ -7,7 +7,7 @@
     <parent>
         <groupId>cn.ashersu.omni.model</groupId>
         <artifactId>omni-model</artifactId>
-        <version>0.0.3</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>omni-model-service</artifactId>
@@ -86,7 +86,7 @@
         <dependency>
             <groupId>cn.ashersu.omni.model</groupId>
             <artifactId>omni-model-api-path</artifactId>
-            <version>0.0.3</version>
+            <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

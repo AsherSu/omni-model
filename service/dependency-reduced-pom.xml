@@ -3,7 +3,7 @@
   <parent>
     <artifactId>omni-model</artifactId>
     <groupId>cn.ashersu.omni.model</groupId>
-    <version>0.0.3</version>
+    <version>1.0.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>omni-model-service</artifactId>

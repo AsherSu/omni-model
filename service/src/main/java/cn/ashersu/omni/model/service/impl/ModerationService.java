@@ -1,4 +1,4 @@
-package cn.ashersu.omni.model.news;
+package cn.ashersu.omni.model.service.impl;
 
 import cn.ashersu.omni.model.moderation.ModerationRequest;
 import cn.ashersu.omni.model.moderation.ModerationResult;

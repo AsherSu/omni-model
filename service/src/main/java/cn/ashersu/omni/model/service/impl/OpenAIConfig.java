@@ -1,13 +1,10 @@
-package cn.ashersu.omni.model.news;
+package cn.ashersu.omni.model.service.impl;
 
 import lombok.Builder;
 import lombok.Data;
 import okhttp3.ConnectionPool;
-import okhttp3.Interceptor;
 
 import java.time.Duration;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
 
 @Data
 @Builder

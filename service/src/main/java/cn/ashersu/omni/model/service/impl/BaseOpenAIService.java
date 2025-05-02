@@ -1,4 +1,4 @@
-package cn.ashersu.omni.model.news;
+package cn.ashersu.omni.model.service.impl;
 
 import cn.ashersu.omni.model.OpenAiError;
 import cn.ashersu.omni.model.OpenAiHttpException;
@@ -135,7 +135,7 @@ public abstract class BaseOpenAIService {
     }
 
 
-    public ObjectMapper defaultObjectMapper() {
+    public static ObjectMapper defaultObjectMapper() {
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);

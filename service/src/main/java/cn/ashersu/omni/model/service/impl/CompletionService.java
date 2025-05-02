@@ -1,4 +1,4 @@
-package cn.ashersu.omni.model.news;
+package cn.ashersu.omni.model.service.impl;
 
 import cn.ashersu.omni.model.completion.CompletionChunk;
 import cn.ashersu.omni.model.completion.CompletionRequest;

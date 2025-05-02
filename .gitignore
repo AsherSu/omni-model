@@ -13,6 +13,9 @@ target/
 *.iml
 *.ipr
 
+### 打包
+**/src/assembly/**
+
 ### Eclipse ###
 .apt_generated
 .classpath

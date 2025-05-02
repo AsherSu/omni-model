@@ -7,7 +7,7 @@
     <parent>
         <groupId>cn.ashersu.omni.model</groupId>
         <artifactId>omni-model</artifactId>
-        <version>0.0.3</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>omni-model-example</artifactId>
