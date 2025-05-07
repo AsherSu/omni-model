@@ -1,0 +1,18 @@
+{
+  "object": "list",
+  "first_id": "file-1",
+  "last_id": "file-1",
+  "has_more": false,
+  "data": [
+    {
+      "id": "file-1",
+      "object": "file",
+      "bytes": 1234,
+      "created_at": 1620000000,
+      "filename": "mock.txt",
+      "purpose": "fine-tune",
+      "status": "processed",
+      "status_details": null
+    }
+  ]
+} 

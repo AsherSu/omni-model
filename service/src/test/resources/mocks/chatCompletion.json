@@ -1,0 +1,15 @@
+{
+  "id": "chatcmpl-123",
+  "object": "chat.completion",
+  "created": 1620000000,
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "Hello from mock!"
+      },
+      "finish_reason": "stop"
+    }
+  ]
+} 

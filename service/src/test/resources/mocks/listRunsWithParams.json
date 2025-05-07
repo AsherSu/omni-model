@@ -1,0 +1,20 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "run-id-1",
+      "object": "thread.run",
+      "created_at": 1620000000,
+      "thread_id": "thread-id",
+      "assistant_id": "assistant-id",
+      "status": "completed",
+      "model": "gpt-4",
+      "instructions": "You are a helpful assistant.",
+      "tools": [],
+      "metadata": {}
+    }
+  ],
+  "first_id": "run-id-1",
+  "last_id": "run-id-1",
+  "has_more": false
+} 

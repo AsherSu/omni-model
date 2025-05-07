@@ -25,15 +25,6 @@ public final class CompletionService extends BaseOpenAIService {
         return stream(api.createCompletionStream(request), CompletionChunk.class);
     }
 
-    public ChatCompletionResult createChatCompletion(ChatCompletionRequest request) {
-        return execute(api.createChatCompletion(request));
-    }
-
-    public Flowable<ChatCompletionChunk> streamChatCompletion(ChatCompletionRequest request) {
-        request.setStream(true);
-        return stream(api.createChatCompletionStream(request), ChatCompletionChunk.class);
-    }
-
     public EditResult createEdit(EditRequest request) {
         return execute(api.createEdit(request));
     }

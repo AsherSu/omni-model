@@ -1,0 +1,47 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "step-id-1",
+      "object": "thread.run.step",
+      "created_at": 1620000000,
+      "run_id": "run-id",
+      "assistant_id": "assistant-id",
+      "thread_id": "thread-id",
+      "type": "message_creation",
+      "status": "completed",
+      "step_details": {
+        "type": "message_creation",
+        "message_creation": {
+          "message_id": "message-id-1"
+        }
+      }
+    },
+    {
+      "id": "step-id-2",
+      "object": "thread.run.step",
+      "created_at": 1620000001,
+      "run_id": "run-id",
+      "assistant_id": "assistant-id",
+      "thread_id": "thread-id",
+      "type": "tool_calls",
+      "status": "completed",
+      "step_details": {
+        "type": "tool_calls",
+        "tool_calls": [
+          {
+            "id": "tool-call-id",
+            "type": "function",
+            "function": {
+              "name": "get_weather",
+              "arguments": "{\"location\":\"San Francisco\"}"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "first_id": "step-id-1",
+  "last_id": "step-id-2",
+  "has_more": false
+} 

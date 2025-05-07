@@ -19,20 +19,18 @@
         </license>
     </licenses>
 
+    <scm>
+        <connection>scm:git:https://github.com/AsherSu/omni-model.git</connection>
+        <developerConnection>scm:git:https://github.com/AsherSu.git</developerConnection>
+        <url>https://github.com/AsherSu/omni-model</url>
+    </scm>
+
     <developers>
         <developer>
-            <name>OmniModel Team</name>
-            <email>omnimodel@example.com</email>
-            <organization>OmniModel</organization>
-            <organizationUrl>https://github.com/horoscope/OmniModel</organizationUrl>
+            <name>Asher Su</name>
+            <email>suhuilong922@gmail.com</email>
         </developer>
     </developers>
-
-    <scm>
-        <connection>scm:git:git://github.com/horoscope/git</connection>
-        <developerConnection>scm:git:ssh://github.com:horoscope/git</developerConnection>
-        <url>https://github.com/horoscope/OmniModel/tree/main</url>
-    </scm>
 
     <modules>
         <module>api-model</module>
@@ -167,70 +165,5 @@
     </distributionManagement>
 
     <profiles>
-<!--        <profile>-->
-<!--            <id>release</id>-->
-<!--            <build>-->
-<!--                <plugins>-->
-<!--                    &lt;!&ndash; 添加assembly插件用于创建zip包 &ndash;&gt;-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.apache.maven.plugins</groupId>-->
-<!--                        <artifactId>maven-assembly-plugin</artifactId>-->
-<!--                        <version>3.4.2</version>-->
-<!--                        <configuration>-->
-<!--                            <descriptors>-->
-<!--                                <descriptor>src/assembly/repository.xml</descriptor>-->
-<!--                            </descriptors>-->
-<!--                            <finalName>${project.artifactId}-${project.version}</finalName>-->
-<!--                            <appendAssemblyId>true</appendAssemblyId>-->
-<!--                            <attach>true</attach>-->
-<!--                        </configuration>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>make-assembly</id>-->
-<!--                                <phase>package</phase>-->
-<!--                                <goals>-->
-<!--                                    <goal>single</goal>-->
-<!--                                </goals>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                    </plugin>-->
-
-<!--                    &lt;!&ndash; GPG plugin &ndash;&gt;-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.apache.maven.plugins</groupId>-->
-<!--                        <artifactId>maven-gpg-plugin</artifactId>-->
-<!--                        <version>3.0.1</version>-->
-<!--                        <executions>-->
-<!--                            <execution>-->
-<!--                                <id>sign-artifacts</id>-->
-<!--                                <phase>verify</phase>-->
-<!--                                <goals>-->
-<!--                                    <goal>sign</goal>-->
-<!--                                </goals>-->
-<!--                                <configuration>-->
-<!--                                    <gpgArguments>-->
-<!--                                        <arg>&#45;&#45;pinentry-mode</arg>-->
-<!--                                        <arg>loopback</arg>-->
-<!--                                    </gpgArguments>-->
-<!--                                </configuration>-->
-<!--                            </execution>-->
-<!--                        </executions>-->
-<!--                    </plugin>-->
-
-<!--                    &lt;!&ndash; Nexus Staging plugin &ndash;&gt;-->
-<!--                    <plugin>-->
-<!--                        <groupId>org.sonatype.plugins</groupId>-->
-<!--                        <artifactId>nexus-staging-maven-plugin</artifactId>-->
-<!--                        <version>1.6.13</version>-->
-<!--                        <extensions>true</extensions>-->
-<!--                        <configuration>-->
-<!--                            <serverId>ossrh</serverId>-->
-<!--                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>-->
-<!--                            <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
-<!--                        </configuration>-->
-<!--                    </plugin>-->
-<!--                </plugins>-->
-<!--            </build>-->
-<!--        </profile>-->
     </profiles>
 </project>

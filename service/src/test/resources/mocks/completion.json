@@ -1,0 +1,14 @@
+{
+  "id": "cmpl-abc",
+  "object": "text_completion",
+  "created": 1620000000,
+  "model": "text-davinci-003",
+  "choices": [
+    {
+      "index": 0,
+      "text": "This is a mock completion.",
+      "logprobs": null,
+      "finish_reason": "length"
+    }
+  ]
+} 

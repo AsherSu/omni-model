@@ -1,0 +1,20 @@
+{
+  "id": "run-id",
+  "object": "thread.run",
+  "created_at": 1620000000,
+  "thread_id": "thread-id",
+  "assistant_id": "assistant-id",
+  "status": "in_progress",
+  "model": "gpt-4",
+  "instructions": "You are a helpful assistant.",
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "get_weather",
+        "arguments": "{\"location\":\"San Francisco\"}"
+      }
+    }
+  ],
+  "metadata": {}
+} 
