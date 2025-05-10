@@ -1,9 +1,10 @@
-package cn.ashersu.omni.model.service.impl;
+package cn.ashersu.omni.model.service.openai.item;
 
 import cn.ashersu.omni.model.ListSearchParameters;
 import cn.ashersu.omni.model.OpenAiResponse;
 import cn.ashersu.omni.model.runs.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import cn.ashersu.omni.model.service.openai.BaseOpenAIService;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class RunService extends BaseOpenAIService {
      * @return 创建的运行
      */
     public Run createRun(String threadId, RunCreateRequest runCreateRequest) {
-        return execute(api.createRun(threadId, runCreateRequest));
+        return execute(getApi().createRun(threadId, runCreateRequest));
     }
     
     /**
@@ -36,7 +37,7 @@ public class RunService extends BaseOpenAIService {
      * @return 运行
      */
     public Run retrieveRun(String threadId, String runId) {
-        return execute(api.retrieveRun(threadId, runId));
+        return execute(getApi().retrieveRun(threadId, runId));
     }
     
     /**
@@ -48,7 +49,7 @@ public class RunService extends BaseOpenAIService {
      * @return 修改后的运行
      */
     public Run modifyRun(String threadId, String runId, Map<String, String> metadata) {
-        return execute(api.modifyRun(threadId, runId, metadata));
+        return execute(getApi().modifyRun(threadId, runId, metadata));
     }
     
     /**
@@ -61,10 +62,9 @@ public class RunService extends BaseOpenAIService {
     public OpenAiResponse<Run> listRuns(String threadId, ListSearchParameters listSearchParameters) {
         Map<String, String> search = new HashMap<>();
         if (listSearchParameters != null) {
-            ObjectMapper mapper = defaultObjectMapper();
-            search = mapper.convertValue(listSearchParameters, Map.class);
+            search = getMapper().convertValue(listSearchParameters, Map.class);
         }
-        return execute(api.listRuns(threadId, search));
+        return execute(getApi().listRuns(threadId, search));
     }
     
     /**
@@ -76,7 +76,7 @@ public class RunService extends BaseOpenAIService {
      * @return 更新后的运行
      */
     public Run submitToolOutputs(String threadId, String runId, SubmitToolOutputsRequest submitToolOutputsRequest) {
-        return execute(api.submitToolOutputs(threadId, runId, submitToolOutputsRequest));
+        return execute(getApi().submitToolOutputs(threadId, runId, submitToolOutputsRequest));
     }
     
     /**
@@ -87,7 +87,7 @@ public class RunService extends BaseOpenAIService {
      * @return 取消后的运行
      */
     public Run cancelRun(String threadId, String runId) {
-        return execute(api.cancelRun(threadId, runId));
+        return execute(getApi().cancelRun(threadId, runId));
     }
     
     /**
@@ -97,7 +97,7 @@ public class RunService extends BaseOpenAIService {
      * @return 运行
      */
     public Run createThreadAndRun(CreateThreadAndRunRequest createThreadAndRunRequest) {
-        return execute(api.createThreadAndRun(createThreadAndRunRequest));
+        return execute(getApi().createThreadAndRun(createThreadAndRunRequest));
     }
     
     /**
@@ -109,7 +109,7 @@ public class RunService extends BaseOpenAIService {
      * @return 运行步骤
      */
     public RunStep retrieveRunStep(String threadId, String runId, String stepId) {
-        return execute(api.retrieveRunStep(threadId, runId, stepId));
+        return execute(getApi().retrieveRunStep(threadId, runId, stepId));
     }
     
     /**
@@ -123,9 +123,8 @@ public class RunService extends BaseOpenAIService {
     public OpenAiResponse<RunStep> listRunSteps(String threadId, String runId, ListSearchParameters listSearchParameters) {
         Map<String, String> search = new HashMap<>();
         if (listSearchParameters != null) {
-            ObjectMapper mapper = defaultObjectMapper();
-            search = mapper.convertValue(listSearchParameters, Map.class);
+            search = getMapper().convertValue(listSearchParameters, Map.class);
         }
-        return execute(api.listRunSteps(threadId, runId, search));
+        return execute(getApi().listRunSteps(threadId, runId, search));
     }
 } 

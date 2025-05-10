@@ -1,7 +1,9 @@
-package cn.ashersu.omni.model.service.impl;
+package cn.ashersu.omni.model.service.openai.item;
 
 import cn.ashersu.omni.model.billing.BillingUsage;
 import cn.ashersu.omni.model.billing.Subscription;
+import cn.ashersu.omni.model.service.openai.BaseOpenAIService;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -21,7 +23,7 @@ public class BillingService extends BaseOpenAIService {
      * @return 订阅信息
      */
     public Subscription subscription() {
-        return execute(api.subscription());
+        return execute(getApi().subscription());
     }
     
     /**
@@ -32,6 +34,6 @@ public class BillingService extends BaseOpenAIService {
      * @return 账单使用情况
      */
     public BillingUsage billingUsage(@NotNull LocalDate startDate, @NotNull LocalDate endDate) {
-        return execute(api.billingUsage(startDate, endDate));
+        return execute(getApi().billingUsage(startDate, endDate));
     }
 } 

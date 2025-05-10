@@ -1,7 +1,9 @@
-package cn.ashersu.omni.model.service.impl;
+package cn.ashersu.omni.model.service.openai.item;
 
 import cn.ashersu.omni.model.DeleteResult;
 import cn.ashersu.omni.model.file.File;
+import cn.ashersu.omni.model.service.openai.BaseOpenAIService;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -16,7 +18,7 @@ public class FileService extends BaseOpenAIService {
     }
 
     public List<File> listFiles() {
-        return execute(api.listFiles()).data;
+        return execute(getApi().listFiles()).getData();
     }
 
     public File uploadFile(String purpose, String filepath) {
@@ -25,19 +27,19 @@ public class FileService extends BaseOpenAIService {
         RequestBody fileBody = RequestBody.create(MediaType.parse("text"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", filepath, fileBody);
 
-        return execute(api.uploadFile(purposeBody, body));
+        return execute(getApi().uploadFile(purposeBody, body));
     }
 
     public DeleteResult deleteFile(String fileId) {
-        return execute(api.deleteFile(fileId));
+        return execute(getApi().deleteFile(fileId));
     }
 
     public File retrieveFile(String fileId) {
-        return execute(api.retrieveFile(fileId));
+        return execute(getApi().retrieveFile(fileId));
     }
 
     public ResponseBody retrieveFileContent(String fileId) {
-        return execute(api.retrieveFileContent(fileId));
+        return execute(getApi().retrieveFileContent(fileId));
     }
 
 }

@@ -1,13 +1,7 @@
 package cn.ashersu.omni.model.completion.chat;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ChatFunctionCall {
 
     /**
@@ -20,4 +14,25 @@ public class ChatFunctionCall {
      */
     JsonNode arguments;
 
+    public ChatFunctionCall(String name, JsonNode arguments) {
+        this.name = name;
+        this.arguments = arguments;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ChatFunctionCall setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public JsonNode getArguments() {
+        return arguments;
+    }
+
+    public void setArguments(JsonNode arguments) {
+        this.arguments = arguments;
+    }
 }

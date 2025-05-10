@@ -1,9 +1,12 @@
-package cn.ashersu.omni.model.service.impl;
+package cn.ashersu.omni.model.service.openai;
+
+import cn.ashersu.omni.model.service.openai.item.*;
 
 import java.util.Map;
 
-public class OpenAI {
-    private final Map<Class, OpenAIConfig> globalCfgMap;
+public class OpenAIService {
+
+    private final Map<Class<?>, OpenAIConfig> globalCfgMap;
 
     private volatile CompletionService completions;
 
@@ -31,8 +34,26 @@ public class OpenAI {
 
     private volatile BillingService billingService;
 
-    public OpenAI(Map<Class, OpenAIConfig> globalCfgs) {
-        this.globalCfgMap = globalCfgs;
+    public OpenAIService(Map<Class<?>, OpenAIConfig> globalCfgMap) {
+        this.globalCfgMap = globalCfgMap;
+        if (globalCfgMap == null || globalCfgMap.isEmpty()) {
+            throw new IllegalArgumentException("globalCfgMap cannot be null or empty");
+        }
+        if (globalCfgMap.containsKey(OpenAIService.class)) {
+            globalCfgMap.put(CompletionService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(AssistantService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(FileService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(FineTuningService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(ImageService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(MessageService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(ModelService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(EmbeddingService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(AudioService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(ModerationService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(ThreadService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(RunService.class, globalCfgMap.get(OpenAIService.class));
+            globalCfgMap.put(BillingService.class, globalCfgMap.get(OpenAIService.class));
+        }
     }
 
     public CompletionService completions() {

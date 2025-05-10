@@ -2,7 +2,6 @@ package cn.ashersu.omni.model.completion.chat;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 
 /**
  * <p>Each object has a role (either "system", "user", or "assistant") and content (the content of the message). Conversations can be as short as 1 message or fill many pages.</p>
@@ -14,24 +13,26 @@ import lombok.*;
  *
  * see <a href="https://platform.openai.com/docs/guides/chat/introduction">OpenAi documentation</a>
  */
-@Data
-@NoArgsConstructor(force = true)
-@RequiredArgsConstructor
-@AllArgsConstructor
+
 public class ChatMessage {
 
 	/**
 	 * Must be either 'system', 'user', 'assistant' or 'function'.<br>
 	 * You may use {@link ChatMessageRole} enum.
 	 */
-	@NonNull
 	String role;
+
 	@JsonInclude() // content should always exist in the call, even if it is null
 	String content;
+
 	//name is optional, The name of the author of this message. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
 	String name;
+
 	@JsonProperty("function_call")
 	ChatFunctionCall functionCall;
+
+	public ChatMessage() {
+	}
 
 	public ChatMessage(String role, String content) {
 		this.role = role;
@@ -44,4 +45,73 @@ public class ChatMessage {
 		this.name = name;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public ChatFunctionCall getFunctionCall() {
+		return functionCall;
+	}
+
+	public void setFunctionCall(ChatFunctionCall functionCall) {
+		this.functionCall = functionCall;
+	}
+
+	public static Builder Builder() {
+		return new Builder();
+	}
+
+	public static final class Builder {
+		private String role;
+		private String content;
+		private String name;
+		private ChatFunctionCall functionCall;
+
+		public Builder role(String role) {
+			this.role = role;
+			return this;
+		}
+
+		public Builder content(String content) {
+			this.content = content;
+			return this;
+		}
+
+		public Builder name(String name) {
+			this.name = name;
+			return this;
+		}
+
+		public Builder functionCall(ChatFunctionCall functionCall) {
+			this.functionCall = functionCall;
+			return this;
+		}
+
+		public ChatMessage build() {
+			ChatMessage chatMessage = new ChatMessage(role, content);
+			chatMessage.setName(name);
+			chatMessage.setFunctionCall(functionCall);
+			return chatMessage;
+		}
+	}
 }

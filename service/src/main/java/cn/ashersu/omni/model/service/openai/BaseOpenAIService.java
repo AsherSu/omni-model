@@ -1,4 +1,4 @@
-package cn.ashersu.omni.model.service.impl;
+package cn.ashersu.omni.model.service.openai;
 
 import cn.ashersu.omni.model.OpenAiError;
 import cn.ashersu.omni.model.OpenAiHttpException;
@@ -7,11 +7,11 @@ import cn.ashersu.omni.model.completion.chat.ChatCompletionRequest;
 import cn.ashersu.omni.model.completion.chat.ChatFunction;
 import cn.ashersu.omni.model.completion.chat.ChatFunctionCall;
 import cn.ashersu.omni.model.interceptor.AuthenticationInterceptor;
-import cn.ashersu.omni.model.mixin.ChatCompletionRequestMixIn;
-import cn.ashersu.omni.model.mixin.ChatFunctionCallMixIn;
-import cn.ashersu.omni.model.mixin.ChatFunctionMixIn;
-import cn.ashersu.omni.model.service.ResponseBodyCallback;
-import cn.ashersu.omni.model.service.SSE;
+import cn.ashersu.omni.model.jackson.mixin.ChatCompletionRequestMixIn;
+import cn.ashersu.omni.model.jackson.mixin.ChatFunctionCallMixIn;
+import cn.ashersu.omni.model.jackson.mixin.ChatFunctionMixIn;
+import cn.ashersu.omni.model.service.sse.ResponseBodyCallback;
+import cn.ashersu.omni.model.service.sse.SSE;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,9 +19,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
-import okhttp3.ConnectionPool;
-import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
+import okhttp3.*;
 import retrofit2.Call;
 import retrofit2.HttpException;
 import retrofit2.Retrofit;
@@ -30,6 +28,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -37,14 +36,14 @@ import java.util.concurrent.TimeUnit;
 public abstract class BaseOpenAIService {
 
     /**
-     * TCP连接池最大连接数
+     * OpenAI API地址
      */
-    private Integer maxIdleConnection;
+    private String baseUrl;
 
     /**
-     * TCP连接池连接超时时间
+     * OpenAI API Token
      */
-    private Integer connectTimeout;
+    private String token;
 
     /**
      * okhttp读取响应超时时间
@@ -62,45 +61,37 @@ public abstract class BaseOpenAIService {
     private ConnectionPool connectionPool;
 
     /**
-     * OpenAI API地址
+     * 拦截器列表
      */
-    private String baseUrl;
-
-    /**
-     * OpenAI API Token
-     */
-    private String token;
-
-    // private List<Interceptor> interceptor;
+    private List<Interceptor> interceptors;
 
     /**
      * objectMapper 用于序列化和反序列化 (暂不支持自定义)
      */
-    public final ObjectMapper mapper = defaultObjectMapper();
+    private final ObjectMapper mapper = defaultObjectMapper();
 
     /**
      * Retrofit接口定义 (暂不支持自定义)
      */
-    public final OpenAiApi api;
+    private final OpenAiApi api;
+
+    public void init(OpenAIConfig config) {
+        this.readTimeout = config.getReadTimeout();
+        this.executorService = config.getExecutorService();
+        this.connectionPool = config.getConnectionPool();
+        this.baseUrl = config.getBaseUrl();
+        this.token = config.getToken();
+    }
 
     public BaseOpenAIService(OpenAIConfig config) {
         init(config);
+
         ObjectMapper mapper = defaultObjectMapper();
-        OkHttpClient client = defaultClient(token, readTimeout,maxIdleConnection,connectTimeout);
+        OkHttpClient client = defaultClient(token, readTimeout, connectionPool, interceptors, executorService);
         Retrofit retrofit = defaultRetrofit(client, mapper);
 
         this.api = retrofit.create(OpenAiApi.class);
         this.executorService = client.dispatcher().executorService();
-    }
-
-    public void init(OpenAIConfig config) {
-        this.maxIdleConnection = config.getMaxIdleConnection();
-        this.connectTimeout = config.getConnectTimeout();
-        this.readTimeout = config.getReadTimeout();
-//        this.executorService = config.getExecutor();
-        this.connectionPool = config.getConnectionPool();
-        this.baseUrl = config.getBaseUrl();
-        this.token = config.getToken();
     }
 
     /**
@@ -146,16 +137,37 @@ public abstract class BaseOpenAIService {
         return mapper;
     }
 
-    public OkHttpClient defaultClient(String token, Duration timeout,Integer maxIdleConnection,Integer connectTimeout) {
-        // 添加日志拦截器，打印HTTP请求和响应
-//        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(System.out::println);
-//        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        return new OkHttpClient.Builder()
-//                .addInterceptor(loggingInterceptor)
-                .addInterceptor(new AuthenticationInterceptor(token))
-                .connectionPool(new ConnectionPool(maxIdleConnection, connectTimeout, TimeUnit.MILLISECONDS))
-                .readTimeout(timeout.toMillis(), TimeUnit.MILLISECONDS)
-                .build();
+    public OkHttpClient defaultClient(String token, Duration timeout, ConnectionPool connectionPool, List<Interceptor> interceptors, ExecutorService executorService) {
+        OkHttpClient.Builder OkHttpClientBuilder = new OkHttpClient.Builder();
+        if (token != null && !token.isEmpty()) {
+            OkHttpClientBuilder.addInterceptor(new AuthenticationInterceptor(token));
+        } else {
+            throw new IllegalArgumentException("token must not be null or empty");
+        }
+
+        if (timeout != null) {
+            OkHttpClientBuilder.readTimeout(timeout.toMillis(), TimeUnit.MILLISECONDS);
+        } else {
+            OkHttpClientBuilder.readTimeout(60, TimeUnit.SECONDS);
+        }
+
+        if (connectionPool != null) {
+            OkHttpClientBuilder.connectionPool(connectionPool);
+        } else {
+            OkHttpClientBuilder.connectionPool(new ConnectionPool(5, 5, TimeUnit.MINUTES));
+        }
+
+        if (interceptors != null) {
+            for (Interceptor interceptor : interceptors) {
+                OkHttpClientBuilder.addInterceptor(interceptor);
+            }
+        }
+
+        if (executorService != null) {
+            OkHttpClientBuilder.dispatcher(new Dispatcher(executorService));
+        }
+
+        return OkHttpClientBuilder.build();
     }
 
     public Retrofit defaultRetrofit(OkHttpClient client, ObjectMapper mapper) {
@@ -195,5 +207,13 @@ public abstract class BaseOpenAIService {
     public void shutdownExecutor() {
         Objects.requireNonNull(this.executorService, "executorService must be set in order to shut down");
         this.executorService.shutdown();
+    }
+
+    public ObjectMapper getMapper() {
+        return mapper;
+    }
+
+    public OpenAiApi getApi() {
+        return api;
     }
 }

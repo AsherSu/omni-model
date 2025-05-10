@@ -1,9 +1,5 @@
 package cn.ashersu.omni.model.messages.content;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 /**
@@ -11,18 +7,39 @@ import java.util.List;
  * <p>
  * https://platform.openai.com/docs/api-reference/messages/object
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Text {
 
     /**
      * The data that makes up the text.
      */
-    String value;
+    private String value;
 
     /**
      * Text annotations that show additional details
      */
-    List<Annotation> annotations;
+    private List<Annotation> annotations;
+    
+    public Text() {
+    }
+    
+    public Text(String value, List<Annotation> annotations) {
+        this.value = value;
+        this.annotations = annotations;
+    }
+    
+    public String getValue() {
+        return value;
+    }
+    
+    public void setValue(String value) {
+        this.value = value;
+    }
+    
+    public List<Annotation> getAnnotations() {
+        return annotations;
+    }
+    
+    public void setAnnotations(List<Annotation> annotations) {
+        this.annotations = annotations;
+    }
 }

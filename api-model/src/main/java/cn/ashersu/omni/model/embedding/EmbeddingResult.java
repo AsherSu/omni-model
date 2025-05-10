@@ -1,7 +1,6 @@
 package cn.ashersu.omni.model.embedding;
 
 import cn.ashersu.omni.model.Usage;
-import lombok.Data;
 
 import java.util.List;
 
@@ -10,26 +9,67 @@ import java.util.List;
  *
  * https://beta.openai.com/docs/api-reference/embeddings/create
  */
-@Data
 public class EmbeddingResult {
 
     /**
      * The GPTmodel used for generating embeddings
      */
-    String model;
+    private String model;
 
     /**
      * The type of object returned, should be "list"
      */
-    String object;
+    private String object;
 
     /**
      * A list of the calculated embeddings
      */
-    List<Embedding> data;
+    private List<Embedding> data;
 
     /**
      * The API usage for this request
      */
-    Usage usage;
+    private Usage usage;
+    
+    public EmbeddingResult() {
+    }
+    
+    public EmbeddingResult(String model, String object, List<Embedding> data, Usage usage) {
+        this.model = model;
+        this.object = object;
+        this.data = data;
+        this.usage = usage;
+    }
+    
+    public String getModel() {
+        return model;
+    }
+    
+    public void setModel(String model) {
+        this.model = model;
+    }
+    
+    public String getObject() {
+        return object;
+    }
+    
+    public void setObject(String object) {
+        this.object = object;
+    }
+    
+    public List<Embedding> getData() {
+        return data;
+    }
+    
+    public void setData(List<Embedding> data) {
+        this.data = data;
+    }
+    
+    public Usage getUsage() {
+        return usage;
+    }
+    
+    public void setUsage(Usage usage) {
+        this.usage = usage;
+    }
 }

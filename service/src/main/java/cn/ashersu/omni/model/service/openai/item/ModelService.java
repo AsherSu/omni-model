@@ -1,6 +1,8 @@
-package cn.ashersu.omni.model.service.impl;
+package cn.ashersu.omni.model.service.openai.item;
 
 import cn.ashersu.omni.model.model.Model;
+import cn.ashersu.omni.model.service.openai.BaseOpenAIService;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
 
 import java.util.List;
 
@@ -11,10 +13,10 @@ public class ModelService extends BaseOpenAIService {
     }
 
     public List<Model> listModels() {
-        return execute(api.listModels()).data;
+        return execute(getApi().listModels()).getData();
     }
 
     public Model getModel(String modelId) {
-        return execute(api.getModel(modelId));
+        return execute(getApi().getModel(modelId));
     }
 }

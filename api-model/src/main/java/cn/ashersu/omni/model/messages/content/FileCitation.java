@@ -1,9 +1,6 @@
 package cn.ashersu.omni.model.messages.content;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * A citation within the message that points to a specific quote from a specific File associated with the
@@ -11,19 +8,40 @@ import lombok.NoArgsConstructor;
  * <p>
  * https://platform.openai.com/docs/api-reference/messages/object
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class FileCitation {
 
     /**
      * The ID of the specific File the citation is from.
      */
     @JsonProperty("file_id")
-    String fileId;
+    private String fileId;
 
     /**
      * The specific quote in the file.
      */
-    String quote;
+    private String quote;
+    
+    public FileCitation() {
+    }
+    
+    public FileCitation(String fileId, String quote) {
+        this.fileId = fileId;
+        this.quote = quote;
+    }
+    
+    public String getFileId() {
+        return fileId;
+    }
+    
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
+    }
+    
+    public String getQuote() {
+        return quote;
+    }
+    
+    public void setQuote(String quote) {
+        this.quote = quote;
+    }
 }

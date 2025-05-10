@@ -1,7 +1,6 @@
 package cn.ashersu.omni.model.billing;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.List;
  * Amount consumption information
  *
  */
-@Data
 public class BillingUsage {
 
     @JsonProperty("object")
@@ -25,5 +23,37 @@ public class BillingUsage {
      */
     @JsonProperty("total_usage")
     private BigDecimal totalUsage;
-
+    
+    public BillingUsage() {
+    }
+    
+    public BillingUsage(String object, List<DailyCost> dailyCosts, BigDecimal totalUsage) {
+        this.object = object;
+        this.dailyCosts = dailyCosts;
+        this.totalUsage = totalUsage;
+    }
+    
+    public String getObject() {
+        return object;
+    }
+    
+    public void setObject(String object) {
+        this.object = object;
+    }
+    
+    public List<DailyCost> getDailyCosts() {
+        return dailyCosts;
+    }
+    
+    public void setDailyCosts(List<DailyCost> dailyCosts) {
+        this.dailyCosts = dailyCosts;
+    }
+    
+    public BigDecimal getTotalUsage() {
+        return totalUsage;
+    }
+    
+    public void setTotalUsage(BigDecimal totalUsage) {
+        this.totalUsage = totalUsage;
+    }
 }

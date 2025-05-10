@@ -1,10 +1,5 @@
 package cn.ashersu.omni.model.messages;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.Map;
 
 /**
@@ -12,10 +7,6 @@ import java.util.Map;
  * <p>
  * https://platform.openai.com/docs/api-reference/messages/modifyMessage
  */
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 public class ModifyMessageRequest {
 
     /**
@@ -23,5 +14,37 @@ public class ModifyMessageRequest {
      * This can be useful for storing additional information about the object in a structured format.
      * Keys can be a maximum of 64 characters long, and values can be a maximum of 512 characters long.
      */
-    Map<String, String> metadata;
+    private Map<String, String> metadata;
+    
+    public ModifyMessageRequest() {
+    }
+    
+    public ModifyMessageRequest(Map<String, String> metadata) {
+        this.metadata = metadata;
+    }
+    
+    public Map<String, String> getMetadata() {
+        return metadata;
+    }
+    
+    public void setMetadata(Map<String, String> metadata) {
+        this.metadata = metadata;
+    }
+    
+    public static Builder builder() {
+        return new Builder();
+    }
+    
+    public static class Builder {
+        private Map<String, String> metadata;
+        
+        public Builder metadata(Map<String, String> metadata) {
+            this.metadata = metadata;
+            return this;
+        }
+        
+        public ModifyMessageRequest build() {
+            return new ModifyMessageRequest(metadata);
+        }
+    }
 }

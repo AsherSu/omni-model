@@ -1,9 +1,11 @@
-package cn.ashersu.omni.model.service.impl;
+package cn.ashersu.omni.model.service.openai.item;
 
 import cn.ashersu.omni.model.image.CreateImageEditRequest;
 import cn.ashersu.omni.model.image.CreateImageRequest;
 import cn.ashersu.omni.model.image.CreateImageVariationRequest;
 import cn.ashersu.omni.model.image.ImageResult;
+import cn.ashersu.omni.model.service.openai.BaseOpenAIService;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -15,7 +17,7 @@ public class ImageService extends BaseOpenAIService {
     }
 
     public ImageResult createImage(CreateImageRequest request) {
-        return execute(api.createImage(request));
+        return execute(getApi().createImage(request));
     }
 
     public ImageResult createImageEdit(CreateImageEditRequest request, String imagePath, String maskPath) {
@@ -50,7 +52,7 @@ public class ImageService extends BaseOpenAIService {
             builder.addFormDataPart("model", request.getModel());
         }
 
-        return execute(api.createImageEdit(builder.build()));
+        return execute(getApi().createImageEdit(builder.build()));
     }
 
     public ImageResult createImageVariation(CreateImageVariationRequest request, String imagePath) {
@@ -75,6 +77,6 @@ public class ImageService extends BaseOpenAIService {
             builder.addFormDataPart("model", request.getModel());
         }
 
-        return execute(api.createImageVariation(builder.build()));
+        return execute(getApi().createImageVariation(builder.build()));
     }
 }

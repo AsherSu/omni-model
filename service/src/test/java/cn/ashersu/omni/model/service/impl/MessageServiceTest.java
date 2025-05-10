@@ -5,6 +5,8 @@ import cn.ashersu.omni.model.messages.Message;
 import cn.ashersu.omni.model.messages.MessageFile;
 import cn.ashersu.omni.model.messages.MessageRequest;
 import cn.ashersu.omni.model.messages.ModifyMessageRequest;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
+import cn.ashersu.omni.model.service.openai.item.MessageService;
 import okhttp3.ConnectionPool;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -14,7 +16,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import cn.ashersu.omni.model.service.impl.testutil.JsonMockLoader;
@@ -30,9 +31,9 @@ class MessageServiceTest {
 
         OpenAIConfig cfg = OpenAIConfig.builder()
                 .baseUrl(server.url("/v1/").toString())
-                .connectTimeout(1)
+                
                 .connectionPool(new ConnectionPool())
-                .maxIdleConnection(1)
+                
                 .readTimeout(Duration.ofSeconds(1))
                 .token("token")
                 .build();

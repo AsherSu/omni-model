@@ -2,6 +2,8 @@ package cn.ashersu.omni.model.service.impl;
 
 import cn.ashersu.omni.model.image.CreateImageRequest;
 import cn.ashersu.omni.model.image.ImageResult;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
+import cn.ashersu.omni.model.service.openai.item.ImageService;
 import okhttp3.ConnectionPool;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -9,8 +11,11 @@ import okhttp3.mockwebserver.RecordedRequest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.*;
+
 import cn.ashersu.omni.model.service.impl.testutil.JsonMockLoader;
 
 class ImageServiceTest {
@@ -29,9 +34,7 @@ class ImageServiceTest {
 
         OpenAIConfig cfg = OpenAIConfig.builder()
                 .baseUrl(server.url("/v1/").toString())
-                .connectTimeout(1)
                 .connectionPool(new ConnectionPool())
-                .maxIdleConnection(1)
                 .readTimeout(Duration.ofSeconds(1))
                 .token("token")
                 .build();

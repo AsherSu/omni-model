@@ -1,6 +1,8 @@
 package cn.ashersu.omni.model.service.impl;
 
 import cn.ashersu.omni.model.model.Model;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
+import cn.ashersu.omni.model.service.openai.item.ModelService;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -29,9 +31,9 @@ class ModelServiceTest {
 
         OpenAIConfig cfg = OpenAIConfig.builder()
                 .baseUrl(server.url("/v1/").toString())
-                .connectTimeout(1)
+                
                 .connectionPool(new ConnectionPool())
-                .maxIdleConnection(1)
+                
                 .readTimeout(Duration.ofSeconds(1))
                 .token("token")
                 .build();

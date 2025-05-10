@@ -1,4 +1,4 @@
-package cn.ashersu.omni.model.service;
+package cn.ashersu.omni.model.service.sse;
 
 /**
  * Exception indicating a SSE format error

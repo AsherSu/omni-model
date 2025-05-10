@@ -1,6 +1,6 @@
-package cn.ashersu.omni.model.mixin;
+package cn.ashersu.omni.model.jackson.mixin;
 
-import cn.ashersu.omni.model.serializer.ChatFunctionCallArgumentsSerializerAndDeserializer;
+import cn.ashersu.omni.model.jackson.serializer.ChatFunctionCallArgumentsSerializerAndDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;

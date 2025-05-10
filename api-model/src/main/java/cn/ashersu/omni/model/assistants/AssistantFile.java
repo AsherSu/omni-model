@@ -1,30 +1,60 @@
 package cn.ashersu.omni.model.assistants;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
 
-@Data
 public class AssistantFile {
 
     /**
      * The identifier of the Assistant File
      */
-    String id;
+    private String id;
 
     /**
      * The object type, which is always assistant.file.
      */
-    String object;
+    private String object;
 
     /**
      * The Unix timestamp (in seconds) for when the assistant file was created.
      */
     @JsonProperty("created_at")
-    String createdAt;
+    private String createdAt;
 
     /**
      * The assistant ID that the file is attached to
      */
     @JsonProperty("assistant_id")
-    String assistantId;
+    private String assistantId;
+    
+    public String getId() {
+        return id;
+    }
+    
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    public String getObject() {
+        return object;
+    }
+    
+    public void setObject(String object) {
+        this.object = object;
+    }
+    
+    public String getCreatedAt() {
+        return createdAt;
+    }
+    
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+    
+    public String getAssistantId() {
+        return assistantId;
+    }
+    
+    public void setAssistantId(String assistantId) {
+        this.assistantId = assistantId;
+    }
 }

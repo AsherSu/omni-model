@@ -1,7 +1,7 @@
-package cn.ashersu.omni.model.mixin;
+package cn.ashersu.omni.model.jackson.mixin;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import cn.ashersu.omni.model.serializer.ChatFunctionParametersSerializer;
+import cn.ashersu.omni.model.jackson.serializer.ChatFunctionParametersSerializer;
 
 public abstract class ChatFunctionMixIn {
 

@@ -1,7 +1,5 @@
 package cn.ashersu.omni.model.image;
 
-import lombok.Data;
-
 import java.util.List;
 
 /**
@@ -9,16 +7,31 @@ import java.util.List;
  *
  * https://beta.openai.com/docs/api-reference/images
  */
-@Data
 public class ImageResult {
 
     /**
      * The creation time in epoch seconds.
      */
-    Long created;
+    private Long created;
 
     /**
      * List of image results.
      */
-    List<Image> data;
+    private List<Image> data;
+    
+    public Long getCreated() {
+        return created;
+    }
+    
+    public void setCreated(Long created) {
+        this.created = created;
+    }
+    
+    public List<Image> getData() {
+        return data;
+    }
+    
+    public void setData(List<Image> data) {
+        this.data = data;
+    }
 }

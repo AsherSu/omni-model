@@ -1,10 +1,5 @@
 package cn.ashersu.omni.model.completion;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 import java.util.Map;
 
@@ -16,10 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  * https://beta.openai.com/docs/api-reference/completions/create
  */
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+
 public class CompletionRequest {
 
     /**
@@ -137,4 +129,132 @@ public class CompletionRequest {
      * A unique identifier representing your end-user, which will help OpenAI to monitor and detect abuse.
      */
     String user;
+
+    public Boolean getStream() {
+        return stream;
+    }
+
+    public void setStream(Boolean stream) {
+        this.stream = stream;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getPrompt() {
+        return prompt;
+    }
+
+    public void setPrompt(String prompt) {
+        this.prompt = prompt;
+    }
+
+    public String getSuffix() {
+        return suffix;
+    }
+
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+
+    public Integer getMaxTokens() {
+        return maxTokens;
+    }
+
+    public void setMaxTokens(Integer maxTokens) {
+        this.maxTokens = maxTokens;
+    }
+
+    public Double getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(Double temperature) {
+        this.temperature = temperature;
+    }
+
+    public Double getTopP() {
+        return topP;
+    }
+
+    public void setTopP(Double topP) {
+        this.topP = topP;
+    }
+
+    public Integer getN() {
+        return n;
+    }
+
+    public void setN(Integer n) {
+        this.n = n;
+    }
+
+    public Integer getLogprobs() {
+        return logprobs;
+    }
+
+    public void setLogprobs(Integer logprobs) {
+        this.logprobs = logprobs;
+    }
+
+    public Boolean getEcho() {
+        return echo;
+    }
+
+    public void setEcho(Boolean echo) {
+        this.echo = echo;
+    }
+
+    public List<String> getStop() {
+        return stop;
+    }
+
+    public void setStop(List<String> stop) {
+        this.stop = stop;
+    }
+
+    public Double getPresencePenalty() {
+        return presencePenalty;
+    }
+
+    public void setPresencePenalty(Double presencePenalty) {
+        this.presencePenalty = presencePenalty;
+    }
+
+    public Double getFrequencyPenalty() {
+        return frequencyPenalty;
+    }
+
+    public void setFrequencyPenalty(Double frequencyPenalty) {
+        this.frequencyPenalty = frequencyPenalty;
+    }
+
+    public Integer getBestOf() {
+        return bestOf;
+    }
+
+    public void setBestOf(Integer bestOf) {
+        this.bestOf = bestOf;
+    }
+
+    public Map<String, Integer> getLogitBias() {
+        return logitBias;
+    }
+
+    public void setLogitBias(Map<String, Integer> logitBias) {
+        this.logitBias = logitBias;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 }

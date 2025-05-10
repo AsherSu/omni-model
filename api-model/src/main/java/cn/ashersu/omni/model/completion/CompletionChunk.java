@@ -1,6 +1,5 @@
 package cn.ashersu.omni.model.completion;
 
-import lombok.Data;
 import java.util.List;
 
 /**
@@ -8,30 +7,80 @@ import java.util.List;
  *
  * https://beta.openai.com/docs/api-reference/completions/create
  */
-@Data
 public class CompletionChunk {
     /**
      * A unique id assigned to this completion.
      */
-    String id;
+    private String id;
 
     /**https://beta.openai.com/docs/api-reference/create-completion
      * The type of object returned, should be "text_completion"
      */
-    String object;
+    private String object;
 
     /**
      * The creation time in epoch seconds.
      */
-    long created;
+    private long created;
 
     /**
      * The model used.
      */
-    String model;
+    private String model;
 
     /**
      * A list of generated completions.
      */
-    List<CompletionChoice> choices;
+    private List<CompletionChoice> choices;
+    
+    public CompletionChunk() {
+    }
+    
+    public CompletionChunk(String id, String object, long created, String model, List<CompletionChoice> choices) {
+        this.id = id;
+        this.object = object;
+        this.created = created;
+        this.model = model;
+        this.choices = choices;
+    }
+    
+    public String getId() {
+        return id;
+    }
+    
+    public void setId(String id) {
+        this.id = id;
+    }
+    
+    public String getObject() {
+        return object;
+    }
+    
+    public void setObject(String object) {
+        this.object = object;
+    }
+    
+    public long getCreated() {
+        return created;
+    }
+    
+    public void setCreated(long created) {
+        this.created = created;
+    }
+    
+    public String getModel() {
+        return model;
+    }
+    
+    public void setModel(String model) {
+        this.model = model;
+    }
+    
+    public List<CompletionChoice> getChoices() {
+        return choices;
+    }
+    
+    public void setChoices(List<CompletionChoice> choices) {
+        this.choices = choices;
+    }
 }

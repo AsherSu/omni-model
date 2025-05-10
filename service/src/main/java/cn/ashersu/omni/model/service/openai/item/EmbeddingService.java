@@ -1,7 +1,9 @@
-package cn.ashersu.omni.model.service.impl;
+package cn.ashersu.omni.model.service.openai.item;
 
 import cn.ashersu.omni.model.embedding.EmbeddingRequest;
 import cn.ashersu.omni.model.embedding.EmbeddingResult;
+import cn.ashersu.omni.model.service.openai.BaseOpenAIService;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
 
 /**
  * 提供OpenAI嵌入(Embeddings)相关API调用功能
@@ -19,6 +21,6 @@ public class EmbeddingService extends BaseOpenAIService {
      * @return 嵌入结果
      */
     public EmbeddingResult createEmbeddings(EmbeddingRequest request) {
-        return execute(api.createEmbeddings(request));
+        return execute(getApi().createEmbeddings(request));
     }
 } 

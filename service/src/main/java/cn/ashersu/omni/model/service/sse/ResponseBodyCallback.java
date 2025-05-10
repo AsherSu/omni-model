@@ -1,4 +1,4 @@
-package cn.ashersu.omni.model.service;
+package cn.ashersu.omni.model.service.sse;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
-import cn.ashersu.omni.model.service.impl.BaseOpenAIService;
+import cn.ashersu.omni.model.service.openai.BaseOpenAIService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cn.ashersu.omni.model.OpenAiError;
 import cn.ashersu.omni.model.OpenAiHttpException;
@@ -25,9 +25,11 @@ import retrofit2.Response;
  * SSE.
  */
 public class ResponseBodyCallback implements Callback<ResponseBody> {
+
     private static final ObjectMapper mapper = BaseOpenAIService.defaultObjectMapper();
 
     private FlowableEmitter<SSE> emitter;
+
     private boolean emitDone;
 
     public ResponseBodyCallback(FlowableEmitter<SSE> emitter, boolean emitDone) {
@@ -88,7 +90,7 @@ public class ResponseBodyCallback implements Callback<ResponseBody> {
                 try {
                     reader.close();
                 } catch (IOException e) {
-					          // do nothing
+                    // do nothing
                 }
             }
         }

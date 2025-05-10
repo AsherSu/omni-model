@@ -1,16 +1,10 @@
 package cn.ashersu.omni.model.completion.chat;
 
-import lombok.Data;
-import lombok.NonNull;
-
-
-@Data
 public class ChatFunctionDynamic {
 
     /**
      * The name of the function being called.
      */
-    @NonNull
     private String name;
 
     /**
@@ -22,6 +16,34 @@ public class ChatFunctionDynamic {
      * The parameters the functions accepts.
      */
     private ChatFunctionParameters parameters;
+
+    public ChatFunctionDynamic(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ChatFunctionParameters getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(ChatFunctionParameters parameters) {
+        this.parameters = parameters;
+    }
 
     public static Builder builder() {
         return new Builder();

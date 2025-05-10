@@ -1,6 +1,8 @@
-package cn.ashersu.omni.model.service.impl;
+package cn.ashersu.omni.model.service.openai.item;
 
 import cn.ashersu.omni.model.audio.*;
+import cn.ashersu.omni.model.service.openai.BaseOpenAIService;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -55,7 +57,7 @@ public class AudioService extends BaseOpenAIService {
             builder.addFormDataPart("language", request.getLanguage());
         }
 
-        return execute(api.createTranscription(builder.build()));
+        return execute(getApi().createTranscription(builder.build()));
     }
 
     /**
@@ -95,7 +97,7 @@ public class AudioService extends BaseOpenAIService {
             builder.addFormDataPart("temperature", request.getTemperature().toString());
         }
 
-        return execute(api.createTranslation(builder.build()));
+        return execute(getApi().createTranslation(builder.build()));
     }
     
     /**
@@ -105,6 +107,6 @@ public class AudioService extends BaseOpenAIService {
      * @return 生成的语音内容
      */
     public ResponseBody createSpeech(CreateSpeechRequest request) {
-        return execute(api.createSpeech(request));
+        return execute(getApi().createSpeech(request));
     }
 } 

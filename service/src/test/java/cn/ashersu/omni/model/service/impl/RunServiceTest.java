@@ -7,6 +7,8 @@ import cn.ashersu.omni.model.runs.Run;
 import cn.ashersu.omni.model.runs.RunCreateRequest;
 import cn.ashersu.omni.model.runs.RunStep;
 import cn.ashersu.omni.model.runs.SubmitToolOutputsRequest;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
+import cn.ashersu.omni.model.service.openai.item.RunService;
 import okhttp3.ConnectionPool;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -32,9 +34,9 @@ class RunServiceTest {
 
         OpenAIConfig cfg = OpenAIConfig.builder()
                 .baseUrl(server.url("/v1/").toString())
-                .connectTimeout(1)
+                
                 .connectionPool(new ConnectionPool())
-                .maxIdleConnection(1)
+                
                 .readTimeout(Duration.ofSeconds(1))
                 .token("token")
                 .build();

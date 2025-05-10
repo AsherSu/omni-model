@@ -1,4 +1,4 @@
-package cn.ashersu.omni.model.serializer;
+package cn.ashersu.omni.model.jackson.serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonNode;

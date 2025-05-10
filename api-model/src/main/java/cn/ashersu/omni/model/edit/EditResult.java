@@ -1,7 +1,6 @@
 package cn.ashersu.omni.model.edit;
 
 import cn.ashersu.omni.model.Usage;
-import lombok.Data;
 
 import java.util.List;
 
@@ -10,26 +9,67 @@ import java.util.List;
  *
  * https://beta.openai.com/docs/api-reference/edits/create
  */
-@Data
 public class EditResult {
 
     /**
      * The type of object returned, should be "edit"
      */
-    public String object;
+    private String object;
 
     /**
      * The creation time in epoch milliseconds.
      */
-    public long created;
+    private long created;
 
     /**
      * A list of generated edits.
      */
-    public List<EditChoice> choices;
+    private List<EditChoice> choices;
 
     /**
      * The API usage for this request
      */
-    public Usage usage;
+    private Usage usage;
+    
+    public EditResult() {
+    }
+    
+    public EditResult(String object, long created, List<EditChoice> choices, Usage usage) {
+        this.object = object;
+        this.created = created;
+        this.choices = choices;
+        this.usage = usage;
+    }
+    
+    public String getObject() {
+        return object;
+    }
+    
+    public void setObject(String object) {
+        this.object = object;
+    }
+    
+    public long getCreated() {
+        return created;
+    }
+    
+    public void setCreated(long created) {
+        this.created = created;
+    }
+    
+    public List<EditChoice> getChoices() {
+        return choices;
+    }
+    
+    public void setChoices(List<EditChoice> choices) {
+        this.choices = choices;
+    }
+    
+    public Usage getUsage() {
+        return usage;
+    }
+    
+    public void setUsage(Usage usage) {
+        this.usage = usage;
+    }
 }

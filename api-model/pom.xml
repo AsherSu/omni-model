@@ -13,7 +13,7 @@
     <artifactId>omni-model-api-model</artifactId>
     <packaging>jar</packaging>
     <name>omni-model-api-model</name>
-    <description>API模块，提供与各种大模型服务的接口集成</description>
+    <description>API模块，提供与各种大模型服务的数据模型集成</description>
 
     <dependencies>
         <!-- Jackson注解，用于JSON序列化/反序列化 -->

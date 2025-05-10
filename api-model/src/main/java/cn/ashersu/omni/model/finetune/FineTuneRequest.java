@@ -1,9 +1,9 @@
 package cn.ashersu.omni.model.finetune;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * A request for OpenAi to create a fine-tuned model
@@ -12,36 +12,31 @@ import java.util.List;
  * https://beta.openai.com/docs/api-reference/fine-tunes/create
  */
 @Deprecated
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 public class FineTuneRequest {
 
     /**
      * The ID of an uploaded file that contains training data.
      */
-    @NonNull
     @JsonProperty("training_file")
-    String trainingFile;
+    private String trainingFile;
 
     /**
      * The ID of an uploaded file that contains validation data.
      */
     @JsonProperty("validation_file")
-    String validationFile;
+    private String validationFile;
 
     /**
      * The name of the base model to fine-tune. You can select one of "ada", "babbage", "curie", or "davinci".
      * To learn more about these models, see the Engines documentation.
      */
-    String model;
+    private String model;
 
     /**
      * The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset.
      */
     @JsonProperty("n_epochs")
-    Integer nEpochs;
+    private Integer nEpochs;
 
     /**
      * The batch size to use for training.
@@ -51,7 +46,7 @@ public class FineTuneRequest {
      * set, capped at 256 - in general, we've found that larger batch sizes tend to work better for larger datasets.
      */
     @JsonProperty("batch_size")
-    Integer batchSize;
+    private Integer batchSize;
 
     /**
      * The learning rate multiplier to use for training.
@@ -62,7 +57,7 @@ public class FineTuneRequest {
      * We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results.
      */
     @JsonProperty("learning_rate_multiplier")
-    Double learningRateMultiplier;
+    private Double learningRateMultiplier;
 
     /**
      * The weight to use for loss on the prompt tokens.
@@ -74,7 +69,7 @@ public class FineTuneRequest {
      * avoid over-prioritizing learning the prompt.
      */
     @JsonProperty("prompt_loss_weight")
-    Double promptLossWeight;
+    private Double promptLossWeight;
 
     /**
      * If set, we calculate classification-specific metrics such as accuracy and F-1 score using the validation set
@@ -85,7 +80,7 @@ public class FineTuneRequest {
      * classification or {@link FineTuneRequest#classificationPositiveClass} for binary classification.
      */
     @JsonProperty("compute_classification_metrics")
-    Boolean computeClassificationMetrics;
+    private Boolean computeClassificationMetrics;
 
     /**
      * The number of classes in a classification task.
@@ -93,7 +88,7 @@ public class FineTuneRequest {
      * This parameter is required for multiclass classification.
      */
     @JsonProperty("classification_n_classes")
-    Integer classificationNClasses;
+    private Integer classificationNClasses;
 
     /**
      * The positive class in binary classification.
@@ -101,7 +96,7 @@ public class FineTuneRequest {
      * This parameter is needed to generate precision, recall, and F1 metrics when doing binary classification.
      */
     @JsonProperty("classification_positive_class")
-    String classificationPositiveClass;
+    private String classificationPositiveClass;
 
     /**
      * If this is provided, we calculate F-beta scores at the specified beta values.
@@ -112,10 +107,213 @@ public class FineTuneRequest {
      * A smaller beta score puts more weight on precision and less on recall.
      */
     @JsonProperty("classification_betas")
-    List<Double> classificationBetas;
+    private List<Double> classificationBetas;
 
     /**
      * A string of up to 40 characters that will be added to your fine-tuned model name.
      */
-    String suffix;
+    private String suffix;
+    
+    public FineTuneRequest() {
+    }
+    
+    public FineTuneRequest(String trainingFile, String validationFile, String model, Integer nEpochs, 
+                           Integer batchSize, Double learningRateMultiplier, Double promptLossWeight, 
+                           Boolean computeClassificationMetrics, Integer classificationNClasses, 
+                           String classificationPositiveClass, List<Double> classificationBetas, String suffix) {
+        this.trainingFile = Objects.requireNonNull(trainingFile, "trainingFile cannot be null");
+        this.validationFile = validationFile;
+        this.model = model;
+        this.nEpochs = nEpochs;
+        this.batchSize = batchSize;
+        this.learningRateMultiplier = learningRateMultiplier;
+        this.promptLossWeight = promptLossWeight;
+        this.computeClassificationMetrics = computeClassificationMetrics;
+        this.classificationNClasses = classificationNClasses;
+        this.classificationPositiveClass = classificationPositiveClass;
+        this.classificationBetas = classificationBetas;
+        this.suffix = suffix;
+    }
+    
+    public String getTrainingFile() {
+        return trainingFile;
+    }
+    
+    public void setTrainingFile(String trainingFile) {
+        this.trainingFile = Objects.requireNonNull(trainingFile, "trainingFile cannot be null");
+    }
+    
+    public String getValidationFile() {
+        return validationFile;
+    }
+    
+    public void setValidationFile(String validationFile) {
+        this.validationFile = validationFile;
+    }
+    
+    public String getModel() {
+        return model;
+    }
+    
+    public void setModel(String model) {
+        this.model = model;
+    }
+    
+    public Integer getNEpochs() {
+        return nEpochs;
+    }
+    
+    public void setNEpochs(Integer nEpochs) {
+        this.nEpochs = nEpochs;
+    }
+    
+    public Integer getBatchSize() {
+        return batchSize;
+    }
+    
+    public void setBatchSize(Integer batchSize) {
+        this.batchSize = batchSize;
+    }
+    
+    public Double getLearningRateMultiplier() {
+        return learningRateMultiplier;
+    }
+    
+    public void setLearningRateMultiplier(Double learningRateMultiplier) {
+        this.learningRateMultiplier = learningRateMultiplier;
+    }
+    
+    public Double getPromptLossWeight() {
+        return promptLossWeight;
+    }
+    
+    public void setPromptLossWeight(Double promptLossWeight) {
+        this.promptLossWeight = promptLossWeight;
+    }
+    
+    public Boolean getComputeClassificationMetrics() {
+        return computeClassificationMetrics;
+    }
+    
+    public void setComputeClassificationMetrics(Boolean computeClassificationMetrics) {
+        this.computeClassificationMetrics = computeClassificationMetrics;
+    }
+    
+    public Integer getClassificationNClasses() {
+        return classificationNClasses;
+    }
+    
+    public void setClassificationNClasses(Integer classificationNClasses) {
+        this.classificationNClasses = classificationNClasses;
+    }
+    
+    public String getClassificationPositiveClass() {
+        return classificationPositiveClass;
+    }
+    
+    public void setClassificationPositiveClass(String classificationPositiveClass) {
+        this.classificationPositiveClass = classificationPositiveClass;
+    }
+    
+    public List<Double> getClassificationBetas() {
+        return classificationBetas;
+    }
+    
+    public void setClassificationBetas(List<Double> classificationBetas) {
+        this.classificationBetas = classificationBetas;
+    }
+    
+    public String getSuffix() {
+        return suffix;
+    }
+    
+    public void setSuffix(String suffix) {
+        this.suffix = suffix;
+    }
+    
+    public static Builder builder() {
+        return new Builder();
+    }
+    
+    public static class Builder {
+        private String trainingFile;
+        private String validationFile;
+        private String model;
+        private Integer nEpochs;
+        private Integer batchSize;
+        private Double learningRateMultiplier;
+        private Double promptLossWeight;
+        private Boolean computeClassificationMetrics;
+        private Integer classificationNClasses;
+        private String classificationPositiveClass;
+        private List<Double> classificationBetas;
+        private String suffix;
+        
+        public Builder trainingFile(String trainingFile) {
+            this.trainingFile = Objects.requireNonNull(trainingFile, "trainingFile cannot be null");
+            return this;
+        }
+        
+        public Builder validationFile(String validationFile) {
+            this.validationFile = validationFile;
+            return this;
+        }
+        
+        public Builder model(String model) {
+            this.model = model;
+            return this;
+        }
+        
+        public Builder nEpochs(Integer nEpochs) {
+            this.nEpochs = nEpochs;
+            return this;
+        }
+        
+        public Builder batchSize(Integer batchSize) {
+            this.batchSize = batchSize;
+            return this;
+        }
+        
+        public Builder learningRateMultiplier(Double learningRateMultiplier) {
+            this.learningRateMultiplier = learningRateMultiplier;
+            return this;
+        }
+        
+        public Builder promptLossWeight(Double promptLossWeight) {
+            this.promptLossWeight = promptLossWeight;
+            return this;
+        }
+        
+        public Builder computeClassificationMetrics(Boolean computeClassificationMetrics) {
+            this.computeClassificationMetrics = computeClassificationMetrics;
+            return this;
+        }
+        
+        public Builder classificationNClasses(Integer classificationNClasses) {
+            this.classificationNClasses = classificationNClasses;
+            return this;
+        }
+        
+        public Builder classificationPositiveClass(String classificationPositiveClass) {
+            this.classificationPositiveClass = classificationPositiveClass;
+            return this;
+        }
+        
+        public Builder classificationBetas(List<Double> classificationBetas) {
+            this.classificationBetas = classificationBetas;
+            return this;
+        }
+        
+        public Builder suffix(String suffix) {
+            this.suffix = suffix;
+            return this;
+        }
+        
+        public FineTuneRequest build() {
+            return new FineTuneRequest(trainingFile, validationFile, model, nEpochs, batchSize, 
+                                      learningRateMultiplier, promptLossWeight, computeClassificationMetrics, 
+                                      classificationNClasses, classificationPositiveClass, 
+                                      classificationBetas, suffix);
+        }
+    }
 }

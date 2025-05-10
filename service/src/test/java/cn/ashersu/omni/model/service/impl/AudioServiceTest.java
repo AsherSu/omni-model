@@ -5,6 +5,8 @@ import cn.ashersu.omni.model.audio.TranscriptionResult;
 import cn.ashersu.omni.model.audio.CreateTranslationRequest;
 import cn.ashersu.omni.model.audio.TranslationResult;
 import cn.ashersu.omni.model.audio.CreateSpeechRequest;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
+import cn.ashersu.omni.model.service.openai.item.AudioService;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import okhttp3.mockwebserver.RecordedRequest;
@@ -42,9 +44,9 @@ class AudioServiceTest {
 
         OpenAIConfig cfg = OpenAIConfig.builder()
                 .baseUrl(server.url("/v1/").toString())
-                .connectTimeout(1)
+                
                 .connectionPool(new ConnectionPool())
-                .maxIdleConnection(1)
+                
                 .readTimeout(Duration.ofSeconds(1))
                 .token("token")
                 .build();
@@ -68,9 +70,9 @@ class AudioServiceTest {
 
         OpenAIConfig cfg = OpenAIConfig.builder()
                 .baseUrl(server.url("/v1/").toString())
-                .connectTimeout(1)
+                
                 .connectionPool(new ConnectionPool())
-                .maxIdleConnection(1)
+                
                 .readTimeout(Duration.ofSeconds(1))
                 .token("token")
                 .build();
@@ -93,9 +95,9 @@ class AudioServiceTest {
 
         OpenAIConfig cfg = OpenAIConfig.builder()
                 .baseUrl(server.url("/v1/").toString())
-                .connectTimeout(1)
+                
                 .connectionPool(new ConnectionPool())
-                .maxIdleConnection(1)
+                
                 .readTimeout(Duration.ofSeconds(1))
                 .token("token")
                 .build();

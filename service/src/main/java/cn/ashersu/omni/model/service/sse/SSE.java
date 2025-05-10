@@ -1,4 +1,4 @@
-package cn.ashersu.omni.model.service;
+package cn.ashersu.omni.model.service.sse;
 
 /**
  * Simple Server Sent Event representation
