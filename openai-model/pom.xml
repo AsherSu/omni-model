@@ -10,9 +10,9 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>omni-model-api-model</artifactId>
+    <artifactId>omni-model-openai-model</artifactId>
     <packaging>jar</packaging>
-    <name>omni-model-api-model</name>
+    <name>omni-model-openai-model</name>
     <description>API模块，提供与各种大模型服务的数据模型集成</description>
 
     <dependencies>
@@ -63,8 +63,6 @@
             <artifactId>mbknor-jackson-jsonschema-java8</artifactId>
             <version>1.0.39.1</version>
         </dependency>
-
-
     </dependencies>
 
     <build>

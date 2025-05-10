@@ -12,26 +12,7 @@
     <description>Bundle module for OmniModel SDK</description>
     <version>1.0.0</version>
     <url>https://github.com/AsherSu/omni-model</url>
-    <licenses>
-        <license>
-            <name>The Apache License, Version 2.0</name>
-            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
-        </license>
-    </licenses>
-    <scm>
-        <!--scm:git:不变，后面改成克隆仓库时的https地址-->
-        <connection>scm:git:https://github.com/AsherSu/omni-model.git</connection>
-        <developerConnection>scm:git:https://github.com/AsherSu.git</developerConnection>
-        <!--仓库地址-->
-        <url>https://github.com/AsherSu/omni-model</url>
-    </scm>
-    <!--开发者相关信息-->
-    <developers>
-        <developer>
-            <name>Asher Su</name>
-            <email>suhuilong922@gmail.com</email>
-        </developer>
-    </developers>
+
 
     <artifactId>omni-model-all</artifactId>
     <packaging>jar</packaging>
@@ -48,12 +29,12 @@
         </dependency>
         <dependency>
             <groupId>cn.ashersu.omni.model</groupId>
-            <artifactId>omni-model-api-model</artifactId>
+            <artifactId>omni-model-openai-model</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.ashersu.omni.model</groupId>
-            <artifactId>omni-model-api-path</artifactId>
+            <artifactId>omni-model-openai-path</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

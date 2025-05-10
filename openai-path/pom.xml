@@ -10,9 +10,9 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>omni-model-api-path</artifactId>
+    <artifactId>omni-model-openai-path</artifactId>
     <packaging>jar</packaging>
-    <name>omni-model-api-path</name>
+    <name>omni-model-openai-path</name>
     <description>客户端模块，提供与各种大模型服务交互的客户端实现</description>
 
     <dependencies>
@@ -59,7 +59,7 @@
 
         <dependency>
             <groupId>cn.ashersu.omni.model</groupId>
-            <artifactId>omni-model-api-model</artifactId>
+            <artifactId>omni-model-openai-model</artifactId>
             <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>

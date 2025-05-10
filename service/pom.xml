@@ -19,7 +19,7 @@
         <!-- API模块依赖 -->
         <dependency>
             <groupId>cn.ashersu.omni.model</groupId>
-            <artifactId>omni-model-api-model</artifactId>
+            <artifactId>omni-model-openai-model</artifactId>
             <version>${project.version}</version>
         </dependency>
         
@@ -85,7 +85,7 @@
         </dependency>
         <dependency>
             <groupId>cn.ashersu.omni.model</groupId>
-            <artifactId>omni-model-api-path</artifactId>
+            <artifactId>omni-model-openai-path</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
