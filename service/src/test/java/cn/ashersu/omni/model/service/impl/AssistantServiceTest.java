@@ -2,12 +2,13 @@ package cn.ashersu.omni.model.service.impl;
 
 import cn.ashersu.omni.model.DeleteResult;
 import cn.ashersu.omni.model.ListSearchParameters;
-import cn.ashersu.omni.model.OpenAiResponse;
 import cn.ashersu.omni.model.assistants.Assistant;
 import cn.ashersu.omni.model.assistants.AssistantFile;
 import cn.ashersu.omni.model.assistants.AssistantFileRequest;
 import cn.ashersu.omni.model.assistants.AssistantRequest;
 import cn.ashersu.omni.model.assistants.ModifyAssistantRequest;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
+import cn.ashersu.omni.model.service.openai.item.AssistantService;
 import okhttp3.ConnectionPool;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -30,9 +31,9 @@ class AssistantServiceTest {
         server.start();
         OpenAIConfig cfg = OpenAIConfig.builder()
                 .baseUrl(server.url("/v1/").toString())
-                .connectTimeout(1)
+                
                 .connectionPool(new ConnectionPool())
-                .maxIdleConnection(1)
+                
                 .readTimeout(Duration.ofSeconds(1))
                 .token("token")
                 .build();

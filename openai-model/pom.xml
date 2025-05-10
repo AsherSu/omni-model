@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.ashersu.omni.model</groupId>
+        <artifactId>omni-model</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>omni-model-openai-model</artifactId>
+    <packaging>jar</packaging>
+    <name>omni-model-openai-model</name>
+    <description>API模块，提供与各种大模型服务的数据模型集成</description>
+
+    <dependencies>
+        <!-- Jackson注解，用于JSON序列化/反序列化 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        
+        <!-- Retrofit2 HTTP客户端 -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-jackson</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        
+        <!-- OkHttp用于底层HTTP请求 -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.10.0</version>
+        </dependency>
+        
+        <!-- jTokKit 依赖，用于 token 计算 -->
+        <!-- https://mvnrepository.com/artifact/com.knuddels/jtokkit -->
+        <!-- https://mvnrepository.com/artifact/com.knuddels/jtokkit -->
+        <dependency>
+            <groupId>com.knuddels</groupId>
+            <artifactId>jtokkit</artifactId>
+            <version>0.6.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.10.0</version>  <!-- 或者你项目中其他的 JUnit Jupiter 版本 -->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>one.duckling</groupId>
+            <artifactId>mbknor-jackson-jsonschema-java8</artifactId>
+            <version>1.0.39.1</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -1,5 +1,7 @@
 package cn.ashersu.omni.model.service.impl;
 
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
+import cn.ashersu.omni.model.service.openai.item.ThreadService;
 import cn.ashersu.omni.model.threads.Thread;
 import cn.ashersu.omni.model.threads.ThreadRequest;
 import okhttp3.ConnectionPool;
@@ -32,9 +34,9 @@ class ThreadServiceTest {
 
         OpenAIConfig cfg = OpenAIConfig.builder()
                 .baseUrl(server.url("/v1/").toString())
-                .connectTimeout(1)
+                
                 .connectionPool(new ConnectionPool())
-                .maxIdleConnection(1)
+                
                 .readTimeout(Duration.ofSeconds(1))
                 .token("token")
                 .build();

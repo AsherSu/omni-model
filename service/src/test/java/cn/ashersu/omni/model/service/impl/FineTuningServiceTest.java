@@ -2,6 +2,8 @@ package cn.ashersu.omni.model.service.impl;
 
 import cn.ashersu.omni.model.fine_tuning.FineTuningJob;
 import cn.ashersu.omni.model.fine_tuning.FineTuningJobRequest;
+import cn.ashersu.omni.model.service.openai.OpenAIConfig;
+import cn.ashersu.omni.model.service.openai.item.FineTuningService;
 import okhttp3.ConnectionPool;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
@@ -31,9 +33,9 @@ class FineTuningServiceTest {
 
         OpenAIConfig cfg = OpenAIConfig.builder()
                 .baseUrl(server.url("/v1/").toString())
-                .connectTimeout(1)
+                
                 .connectionPool(new ConnectionPool())
-                .maxIdleConnection(1)
+                
                 .readTimeout(Duration.ofSeconds(1))
                 .token("token")
                 .build();

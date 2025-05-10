@@ -15,7 +15,7 @@
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
         </license>
     </licenses>
 
@@ -33,17 +33,17 @@
     </developers>
 
     <modules>
-        <module>api-model</module>
-        <module>api-path</module>
+        <module>openai-model</module>
+        <module>openai-path</module>
         <module>service</module>
-        <module>omni-model-all</module>
+        <module>all</module>
     </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <jackson.version>2.13.4</jackson.version>
+        <jackson.version>2.14.0</jackson.version>
         <slf4j.version>1.7.36</slf4j.version>
     </properties>
 
@@ -76,18 +76,11 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>4.8.0</version>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.36</version>
         </dependency>
     </dependencies>
 
@@ -106,11 +99,13 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.9.1</version>
                 <configuration>
+                    <javadocExecutable>D:\.env\.java\java_1.8.0_151\jdk1.8.0_151\bin\javadoc</javadocExecutable>
                     <aggregate>true</aggregate>
                     <charset>UTF-8</charset>
                     <encoding>UTF-8</encoding>
@@ -126,6 +121,7 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -150,6 +146,17 @@
                 <configuration>
                     <publishingServerId>central</publishingServerId>
                     <tokenAuth>true</tokenAuth>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.0-M1</version> <!-- 插件版本 -->
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules> <!-- 自动更新子模块版本 -->
+                    <releaseVersion>1.1.1</releaseVersion> <!-- 发布的版本 -->
+                    <developmentVersion>1.1.1-SNAPSHOT</developmentVersion> <!-- 开发版本 -->
                 </configuration>
             </plugin>
         </plugins>
