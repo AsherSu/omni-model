@@ -7,7 +7,7 @@
     <parent>
         <groupId>cn.ashersu.omni.model</groupId>
         <artifactId>omni-model</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
 
     <artifactId>omni-model-openai-path</artifactId>
