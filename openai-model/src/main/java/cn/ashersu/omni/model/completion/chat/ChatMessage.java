@@ -25,6 +25,10 @@ public class ChatMessage {
 	@JsonInclude() // content should always exist in the call, even if it is null
 	String content;
 
+	// 思考过程
+	@JsonProperty("reasoning_content")
+	String reasoningContent;
+
 	//name is optional, The name of the author of this message. May contain a-z, A-Z, 0-9, and underscores, with a maximum length of 64 characters.
 	String name;
 
@@ -65,6 +69,10 @@ public class ChatMessage {
 		return name;
 	}
 
+	public String getReasoningContent() {
+		return reasoningContent;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -77,6 +85,10 @@ public class ChatMessage {
 		this.functionCall = functionCall;
 	}
 
+	public void setReasoningContent(String reasoningContent) {
+		this.reasoningContent = reasoningContent;
+	}
+
 	public static Builder Builder() {
 		return new Builder();
 	}
@@ -84,6 +96,7 @@ public class ChatMessage {
 	public static final class Builder {
 		private String role;
 		private String content;
+		private String reasoningContent;
 		private String name;
 		private ChatFunctionCall functionCall;
 
@@ -107,10 +120,16 @@ public class ChatMessage {
 			return this;
 		}
 
+		public Builder reasoningContent(String reasoningContent) {
+			this.reasoningContent = reasoningContent;
+			return this;
+		}
+
 		public ChatMessage build() {
 			ChatMessage chatMessage = new ChatMessage(role, content);
 			chatMessage.setName(name);
 			chatMessage.setFunctionCall(functionCall);
+			chatMessage.setReasoningContent(reasoningContent);
 			return chatMessage;
 		}
 	}
