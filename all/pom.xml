@@ -5,12 +5,12 @@
     <parent>
         <groupId>cn.ashersu.omni.model</groupId>
         <artifactId>omni-model</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </parent>
 
     <name>omni-model-all</name>
     <description>Bundle module for OmniModel SDK</description>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <url>https://github.com/AsherSu/omni-model</url>
 
 
