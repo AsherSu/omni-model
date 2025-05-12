@@ -21,14 +21,14 @@ Omni-Model是一个Java客户端库，提供对OpenAI API的全面封装，支�
 <dependency>
     <groupId>cn.ashersu.omni.model</groupId>
     <artifactId>omni-model-all</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'cn.ashersu.omni:omni-model:1.0.1'
+implementation 'cn.ashersu.omni:omni-model:1.0.2'
 ```
 
 ## 快速开始
