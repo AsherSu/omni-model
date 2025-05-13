@@ -18,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -86,7 +87,8 @@ class RunServiceTest {
                 .setBody(JsonMockLoader.json("modifyRun.json"))
                 .addHeader("Content-Type", "application/json"));
 
-        Map<String,String> meta = Map.of("key","value");
+        HashMap<String, String> meta = new HashMap<>();
+        meta.put("key", "value");
         Run run = service.modifyRun("thread-id", "run-id", meta);
         
         assertNotNull(run);
