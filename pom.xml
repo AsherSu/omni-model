@@ -5,7 +5,7 @@
 
     <groupId>cn.ashersu.omni.model</groupId>
     <artifactId>omni-model</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.4</version>
     <packaging>pom</packaging>
 
     <name>omni-model</name>
@@ -105,7 +105,7 @@
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.9.1</version>
                 <configuration>
-<!--                    <javadocExecutable>D:\.env\.java\java_1.8.0_151\jdk1.8.0_151\bin\javadoc</javadocExecutable>-->
+                    <javadocExecutable>D:\.env\.java\java_1.8.0_151\jdk1.8.0_151\bin\javadoc</javadocExecutable>
                     <aggregate>true</aggregate>
                     <charset>UTF-8</charset>
                     <encoding>UTF-8</encoding>
@@ -161,6 +161,30 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <distributionManagement>
         <!-- 发布版本用的仓库 -->

@@ -1,7 +1,7 @@
 package cn.ashersu.omni.model.completion.chat;
 
 /**
- * see {@link ChatMessage} documentation.
+ * see {@link SimpleChatMessage} documentation.
  */
 public enum ChatMessageRole {
     SYSTEM("system"),

@@ -105,6 +105,17 @@ public abstract class BaseOpenAIService {
     }
 
     /**
+     * Calls the Open AI api and returns a Flowable of SSE for streaming
+     * with the last message.
+     *
+     * @param apiCall The api call
+     */
+    public Flowable<SSE> streamWithLastMessage(Call<ResponseBody> apiCall) {
+        return stream(apiCall, true);
+    }
+
+
+    /**
      * Calls the Open AI api and returns a Flowable of SSE for streaming.
      *
      * @param apiCall  The api call

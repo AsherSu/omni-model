@@ -33,10 +33,10 @@ public final class CompletionService extends BaseOpenAIService {
 
     public Flowable<ChatMessageAccumulator> mapStreamToAccumulator(Flowable<ChatCompletionChunk> flowable) {
         ChatFunctionCall functionCall = new ChatFunctionCall(null, null);
-        ChatMessage accumulatedMessage = new ChatMessage(ChatMessageRole.ASSISTANT.value(), null);
+        SimpleChatMessage accumulatedMessage = new SimpleChatMessage(ChatMessageRole.ASSISTANT.value(), null);
 
         return flowable.map(chunk -> {
-            ChatMessage messageChunk = chunk.getChoices().get(0).getMessage();
+            SimpleChatMessage messageChunk = chunk.getChoices().get(0).getMessage();
             if (messageChunk.getFunctionCall() != null) {
                 if (messageChunk.getFunctionCall().getName() != null) {
                     String namePart = messageChunk.getFunctionCall().getName();

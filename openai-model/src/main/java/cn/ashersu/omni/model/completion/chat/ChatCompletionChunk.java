@@ -33,6 +33,9 @@ public class ChatCompletionChunk {
 
     String usage;
 
+    @JsonProperty("system_fingerprint")
+    String systemFingerprint;
+
     /**
      * A list of all generated completions.
      */
@@ -94,16 +97,11 @@ public class ChatCompletionChunk {
         this.choices = choices;
     }
 
-    @Override
-    public String toString() {
-        return "ChatCompletionChunk{" +
-                "id='" + id + '\'' +
-                ", object='" + object + '\'' +
-                ", created=" + created +
-                ", model='" + model + '\'' +
-                ", serviceTier='" + serviceTier + '\'' +
-                ", usage='" + usage + '\'' +
-                ", choices=" + choices +
-                '}';
+    public String getSystemFingerprint() {
+        return systemFingerprint;
+    }
+
+    public void setSystemFingerprint(String systemFingerprint) {
+        this.systemFingerprint = systemFingerprint;
     }
 }

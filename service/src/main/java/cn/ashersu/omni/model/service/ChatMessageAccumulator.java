@@ -1,7 +1,7 @@
 package cn.ashersu.omni.model.service;
 
 import cn.ashersu.omni.model.completion.chat.ChatFunctionCall;
-import cn.ashersu.omni.model.completion.chat.ChatMessage;
+import cn.ashersu.omni.model.completion.chat.SimpleChatMessage;
 
 /**
  * Class that accumulates chat messages and provides utility methods for
@@ -12,8 +12,8 @@ import cn.ashersu.omni.model.completion.chat.ChatMessage;
  */
 public class ChatMessageAccumulator {
 
-    private final ChatMessage messageChunk;
-    private final ChatMessage accumulatedMessage;
+    private final SimpleChatMessage messageChunk;
+    private final SimpleChatMessage accumulatedMessage;
 
     /**
      * Constructor that initializes the message chunk and accumulated message.
@@ -21,7 +21,7 @@ public class ChatMessageAccumulator {
      * @param messageChunk The message chunk.
      * @param accumulatedMessage The accumulated message.
      */
-    public ChatMessageAccumulator(ChatMessage messageChunk, ChatMessage accumulatedMessage) {
+    public ChatMessageAccumulator(SimpleChatMessage messageChunk, SimpleChatMessage accumulatedMessage) {
         this.messageChunk = messageChunk;
         this.accumulatedMessage = accumulatedMessage;
     }
@@ -49,7 +49,7 @@ public class ChatMessageAccumulator {
      *
      * @return the message chunk.
      */
-    public ChatMessage getMessageChunk() {
+    public SimpleChatMessage getMessageChunk() {
         return messageChunk;
     }
 
@@ -58,7 +58,7 @@ public class ChatMessageAccumulator {
      *
      * @return the accumulated message.
      */
-    public ChatMessage getAccumulatedMessage() {
+    public SimpleChatMessage getAccumulatedMessage() {
         return accumulatedMessage;
     }
 

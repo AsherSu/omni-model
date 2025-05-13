@@ -1,4 +1,5 @@
 package cn.ashersu.omni.model.completion.chat;
+
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,19 +11,21 @@ public class ChatCompletionChoice {
     /**
      * This index of this completion in the returned list.
      */
-    Integer index;
+    private Integer index;
 
     /**
      * The {@link ChatMessageRole#ASSISTANT} message or delta (when streaming) which was generated
      */
     @JsonAlias("delta")
-    ChatMessage message;
+    private SimpleChatMessage message;
 
     /**
      * The reason why GPT stopped generating, for example "length".
      */
     @JsonProperty("finish_reason")
-    String finishReason;
+    private String finishReason;
+
+    private String logprobs;
 
     public Integer getIndex() {
         return index;
@@ -32,11 +35,11 @@ public class ChatCompletionChoice {
         this.index = index;
     }
 
-    public ChatMessage getMessage() {
+    public SimpleChatMessage getMessage() {
         return message;
     }
 
-    public void setMessage(ChatMessage message) {
+    public void setMessage(SimpleChatMessage message) {
         this.message = message;
     }
 
@@ -48,21 +51,30 @@ public class ChatCompletionChoice {
         this.finishReason = finishReason;
     }
 
+    public String getLogprobs() {
+        return logprobs;
+    }
+
+    public void setLogprobs(String logprobs) {
+        this.logprobs = logprobs;
+    }
+
     public static Builder Builder() {
         return new Builder();
     }
 
     public static final class Builder {
         private Integer index;
-        private ChatMessage message;
+        private SimpleChatMessage message;
         private String finishReason;
+        private String logprobs;
 
         public Builder index(Integer index) {
             this.index = index;
             return this;
         }
 
-        public Builder message(ChatMessage message) {
+        public Builder message(SimpleChatMessage message) {
             this.message = message;
             return this;
         }
@@ -72,11 +84,17 @@ public class ChatCompletionChoice {
             return this;
         }
 
+        public Builder logprobs(String logprobs) {
+            this.logprobs = logprobs;
+            return this;
+        }
+
         public ChatCompletionChoice build() {
             ChatCompletionChoice chatCompletionChoice = new ChatCompletionChoice();
             chatCompletionChoice.setIndex(index);
             chatCompletionChoice.setMessage(message);
             chatCompletionChoice.setFinishReason(finishReason);
+            chatCompletionChoice.setLogprobs(logprobs);
             return chatCompletionChoice;
         }
     }
