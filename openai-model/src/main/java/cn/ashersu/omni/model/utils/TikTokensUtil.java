@@ -1,6 +1,6 @@
 package cn.ashersu.omni.model.utils;
 
-import cn.ashersu.omni.model.completion.chat.ChatMessage;
+import cn.ashersu.omni.model.completion.chat.SimpleChatMessage;
 import com.knuddels.jtokkit.Encodings;
 import com.knuddels.jtokkit.api.Encoding;
 import com.knuddels.jtokkit.api.EncodingRegistry;
@@ -167,7 +167,7 @@ public class TikTokensUtil {
      * @param messages
      * @return Number of tokens
      */
-    public static int tokens(String modelName, List<ChatMessage> messages) {
+    public static int tokens(String modelName, List<SimpleChatMessage> messages) {
         Encoding encoding = getEncoding(modelName);
         int tokensPerMessage = 0;
         int tokensPerName = 0;
@@ -182,9 +182,9 @@ public class TikTokensUtil {
             tokensPerName = 1;
         }
         int sum = 0;
-        for (ChatMessage msg : messages) {
+        for (SimpleChatMessage msg : messages) {
             sum += tokensPerMessage;
-            sum += tokens(encoding, msg.getContent());
+            sum += tokens(encoding, msg.getContent().toString());
             sum += tokens(encoding, msg.getRole());
             sum += tokens(encoding, msg.getName());
             if (isNotBlank(msg.getName())) {

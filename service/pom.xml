@@ -7,7 +7,7 @@
     <parent>
         <groupId>cn.ashersu.omni.model</groupId>
         <artifactId>omni-model</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.4</version>
     </parent>
 
     <artifactId>omni-model-service</artifactId>
@@ -68,7 +68,7 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>4.11.0</version>
+            <version>4.12.0</version>
         </dependency>
 
         <!-- OkHttp 日志拦截器 -->
@@ -81,7 +81,7 @@
         <dependency>
             <groupId>cn.ashersu.omni.model</groupId>
             <artifactId>omni-model-openai-path</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.4</version>
             <scope>compile</scope>
         </dependency>
 

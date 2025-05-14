@@ -21,14 +21,14 @@ Omni-Model是一个Java客户端库，提供对OpenAI API的全面封装，支�
 <dependency>
     <groupId>cn.ashersu.omni.model</groupId>
     <artifactId>omni-model-all</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.4</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation 'cn.ashersu.omni:omni-model:1.0.0'
+implementation 'cn.ashersu.omni:omni-model:1.0.4'
 ```
 
 ## 快速开始
@@ -71,7 +71,7 @@ public class QuickStart {
 ```java
 import cn.ashersu.omni.model.completion.chat.ChatCompletionRequest;
 import cn.ashersu.omni.model.completion.chat.ChatCompletionResult;
-import cn.ashersu.omni.model.completion.chat.ChatMessage;
+import cn.ashersu.omni.model.completion.chat.SimpleChatMessage;
 import cn.ashersu.omni.model.completion.chat.ChatMessageRole;
 
 // 创建聊天请求
@@ -173,9 +173,9 @@ Flowable<ChatCompletionChunk> flowable = openAI.completions().streamChatCompleti
 
 // 处理流式响应 - 方式1：直接订阅
 flowable.subscribe(chunk -> {
-    String content = chunk.getChoices().get(0).getMessage().getContent();
-    if (content != null) {
-        System.out.print(content);
+    String text = chunk.getChoices().get(0).getMessage().getContent();
+    if (text != null) {
+        System.out.print(text);
     }
 });
 

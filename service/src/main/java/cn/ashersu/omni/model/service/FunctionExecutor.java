@@ -1,5 +1,6 @@
 package cn.ashersu.omni.model.service;
 
+import cn.ashersu.omni.model.completion.chat.SimpleChatMessage;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -7,7 +8,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import cn.ashersu.omni.model.completion.chat.ChatFunction;
 import cn.ashersu.omni.model.completion.chat.ChatFunctionCall;
-import cn.ashersu.omni.model.completion.chat.ChatMessage;
 import cn.ashersu.omni.model.completion.chat.ChatMessageRole;
 
 import java.util.*;
@@ -26,7 +26,7 @@ public class FunctionExecutor {
         setObjectMapper(objectMapper);
     }
 
-    public Optional<ChatMessage> executeAndConvertToMessageSafely(ChatFunctionCall call) {
+    public Optional<SimpleChatMessage> executeAndConvertToMessageSafely(ChatFunctionCall call) {
         try {
             return Optional.ofNullable(executeAndConvertToMessage(call));
         } catch (Exception ignored) {
@@ -34,7 +34,7 @@ public class FunctionExecutor {
         }
     }
 
-    public ChatMessage executeAndConvertToMessageHandlingExceptions(ChatFunctionCall call) {
+    public SimpleChatMessage executeAndConvertToMessageHandlingExceptions(ChatFunctionCall call) {
         try {
             return executeAndConvertToMessage(call);
         } catch (Exception exception) {
@@ -43,13 +43,13 @@ public class FunctionExecutor {
         }
     }
 
-    public ChatMessage convertExceptionToMessage(Exception exception) {
+    public SimpleChatMessage convertExceptionToMessage(Exception exception) {
         String error = exception.getMessage() == null ? exception.toString() : exception.getMessage();
-        return new ChatMessage(ChatMessageRole.FUNCTION.value(), "{\"error\": \"" + error + "\"}", "error");
+        return new SimpleChatMessage(ChatMessageRole.FUNCTION.value(), "{\"error\": \"" + error + "\"}", "error");
     }
 
-    public ChatMessage executeAndConvertToMessage(ChatFunctionCall call) {
-        return new ChatMessage(ChatMessageRole.FUNCTION.value(), executeAndConvertToJson(call).toPrettyString(), call.getName());
+    public SimpleChatMessage executeAndConvertToMessage(ChatFunctionCall call) {
+        return new SimpleChatMessage(ChatMessageRole.FUNCTION.value(), executeAndConvertToJson(call).toPrettyString(), call.getName());
     }
 
     public JsonNode executeAndConvertToJson(ChatFunctionCall call) {

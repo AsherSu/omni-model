@@ -1,5 +1,7 @@
 package cn.ashersu.omni.model.completion.chat;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 /**
@@ -25,6 +27,14 @@ public class ChatCompletionChunk {
      * The model used.
      */
     String model;
+
+    @JsonProperty("service_tier")
+    String serviceTier;
+
+    String usage;
+
+    @JsonProperty("system_fingerprint")
+    String systemFingerprint;
 
     /**
      * A list of all generated completions.
@@ -59,6 +69,22 @@ public class ChatCompletionChunk {
         return model;
     }
 
+    public String getServiceTier() {
+        return serviceTier;
+    }
+
+    public String getUsage() {
+        return usage;
+    }
+
+    public void setUsage(String usage) {
+        this.usage = usage;
+    }
+
+    public void setServiceTier(String serviceTier) {
+        this.serviceTier = serviceTier;
+    }
+
     public void setModel(String model) {
         this.model = model;
     }
@@ -71,5 +97,11 @@ public class ChatCompletionChunk {
         this.choices = choices;
     }
 
+    public String getSystemFingerprint() {
+        return systemFingerprint;
+    }
 
+    public void setSystemFingerprint(String systemFingerprint) {
+        this.systemFingerprint = systemFingerprint;
+    }
 }
